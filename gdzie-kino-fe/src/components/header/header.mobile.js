@@ -12,7 +12,7 @@ import {
 import { HeaderSearch } from "../header.search";
 import { Logo } from "../logo";
 // import { modalOpen, MODAL_FILMS_FILTERS } from 'store/modals';
-const modalOpen = () => ({ type: 'olden' });
+const modalOpen = () => ({ type: "olden" });
 const MODAL_FILMS_FILTERS = "";
 
 class _HeaderMobile extends React.Component {
@@ -103,7 +103,7 @@ const HeaderMobile = compose(
   withRouter,
   connect(
     state => ({
-      filters: state.films.filters
+      filters: {}
     }),
     dispatch => ({
       openFiltersModal: () => dispatch(modalOpen(MODAL_FILMS_FILTERS))

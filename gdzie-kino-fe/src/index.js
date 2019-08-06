@@ -8,7 +8,7 @@ import "./styles/styles.scss";
 
 import { persistor, store } from "./store";
 import { AnonymousRoute } from "./components/custom.routes";
-import { FilmList } from "./components/film.list";
+import { MoviesList } from "./components/pages/MoviesList/MoviesList";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { Modals } from "./components/modals";
@@ -28,7 +28,7 @@ ReactDOM.render(
         <Router>
           <ScrollToTop>
             <Header />
-            <Route exact path="/" component={FilmList} />
+            <Route exact path="/" component={MoviesList} />
             <Route path="/film/:id" component={FilmDetails} />
             <Route exact path="/konto" component={UserPage} />
             <Route exact path="/kina" component={MovieTheaters} />

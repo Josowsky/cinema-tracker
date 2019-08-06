@@ -1,12 +1,7 @@
-import { combineEpics } from 'redux-observable';
-import { filmsEpic } from '../films';
-import { authEpic } from '../auth';
-import { appEpic } from '../app';
+import { combineEpics } from "redux-observable";
+import { authEpic } from "../auth";
+import { appEpic } from "../app";
 
-const rootEpic = combineEpics(
-  authEpic,
-  filmsEpic,
-  appEpic,
-);
+const rootEpic = combineEpics(authEpic, appEpic);
 
 export { rootEpic };

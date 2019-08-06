@@ -4,7 +4,6 @@ import storage from "redux-persist/lib/storage";
 
 import { appReducer } from "../app";
 import { authReducer } from "../auth";
-import { filmsReducer } from "../films";
 import { searchReducer } from "../search";
 import { modalsReducer } from "../modals";
 
@@ -17,7 +16,6 @@ const authStorageConfig = {
 const rootReducer = combineReducers({
   app: appReducer,
   auth: persistReducer(authStorageConfig, authReducer),
-  films: filmsReducer,
   search: searchReducer,
   modals: modalsReducer
 });

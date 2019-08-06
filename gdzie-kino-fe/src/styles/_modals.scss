@@ -1,0 +1,125 @@
+.modals {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z-index-modals;
+  overflow: auto;
+  width: 100%;
+  height: 0;
+  transition: height 0.01s linear 0.3s;
+}
+
+.modals--active {
+  height: 100%;
+  transition: none;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 2rem;
+  background-color: white;
+  flex: 1;
+}
+
+.modal__container {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.modal__overlay--dark {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: $grey;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.change-modal {
+  margin: 1rem 0;
+}
+
+.change-modal__title {
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  color: $grey;
+}
+
+.change-modal__input {
+  max-width: 100%;
+  margin: 2rem auto 1rem;
+}
+
+.change-modal__confirm-button {
+  margin-top: 2rem;
+  font-weight: 700;
+  text-align: right;
+  color: $accent-color-2;
+}
+
+.filters-modal {
+  margin: 1rem 0;
+}
+
+.copyright-modal {
+  margin: 1rem 0;
+}
+
+.filters-modal__title,
+.copyright-modal__title {
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  color: $grey;
+}
+
+.filters-modal__input,
+.copyright-modal__text {
+  max-width: 100%;
+  margin: 2rem auto 1rem;
+}
+
+.filters-modal__clear-button {
+  margin-top: 2rem;
+  font-weight: 700;
+  text-align: right;
+  color: $accent-color-1;
+}
+
+@include media-breakpoint-up(md) {
+  .modal {
+    max-width: 768px;
+  }
+
+  .modal--small {
+    max-width: 26rem;
+  }
+}

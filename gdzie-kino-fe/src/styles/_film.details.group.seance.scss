@@ -1,0 +1,83 @@
+.film-details-group-seance {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0.3rem;
+  padding: 0.6rem 1.6rem;
+  color: $grey;
+  background-color: $accent-color-5;
+  align-items: flex-start;
+}
+
+.film-details-group-seance__details-section {
+  margin-right: 1.5rem;
+}
+
+.film-details-group-seance__hour-box {
+  margin-bottom: 0.6rem;
+}
+
+.film-details-group-seance__icon {
+  margin-right: 0.5rem;
+}
+
+.film-details-group-seance__hour {
+  margin: 0;
+}
+
+.film-details-group-seance__bottom-icon {
+  margin-right: 0.5rem;
+}
+
+.film-details-group-seance__cinema {
+  margin: 0;
+}
+
+.film-details-group-seance__ticket-box {
+  display: flex;
+  min-width: 6rem;
+  margin: auto 0 auto auto;
+  padding: 0.4rem 0.6rem;
+  background-color: $accent-color-1;
+  align-items: center;
+  justify-content: center;
+}
+
+.film-details-group-seance__ticket-icon {
+  margin-top: 2px;
+  font-size: 0.9rem;
+  color: $accent-color-5;
+}
+
+.film-details-group-seance__ticket {
+  margin: 0;
+  margin-top: 1px;
+  margin-left: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $accent-color-5;
+
+  p {
+    margin: 0;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .film-details-group-seance:hover {
+    .film-details-group-seance__ticket-box:hover {
+      padding: 0.2rem 0.4rem;
+      border: 3px solid $accent-color-1;
+      background-color: $accent-color-5;
+      cursor: pointer;
+
+      .film-details-group-seance__ticket-icon {
+        color: $accent-color-1;
+      }
+
+      .film-details-group-seance__ticket {
+        color: $accent-color-1;
+      }
+    }
+  }
+}

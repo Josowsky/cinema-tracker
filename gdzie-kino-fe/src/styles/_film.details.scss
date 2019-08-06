@@ -1,0 +1,114 @@
+.film-details {
+  padding: 1.6rem 1rem 1.7rem 1rem;
+  background-color: $accent-color-5;
+
+  .film-details__poster-and-desc {
+    min-height: 131px;
+    margin-bottom: 1rem;
+
+    .film-details__poster-box {
+      width: 131px;
+      height: 202px;
+      margin-right: 1.3rem;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .film-details__description-box {
+      width: calc(100% - 131px);
+      color: $grey;
+
+      .film-details__title {
+        margin: 0;
+        margin-bottom: 0.4rem;
+        font-size: 1.2rem;
+        font-weight: 900;
+      }
+
+      .film-details__genre {
+        margin: 0;
+        margin-bottom: 0.7rem;
+        font-size: 0.9rem;
+      }
+
+      .film-details__duration-icon {
+        margin: 0;
+        margin-bottom: 0.8rem;
+        font-size: 0.8rem;
+      }
+
+      .film-details__duration {
+        margin: 0;
+        margin-top: -2px;
+        margin-bottom: 0.8rem;
+        margin-left: 5px;
+        font-size: 0.8rem;
+      }
+
+      .film-details__description {
+        margin: 0;
+        font-size: 0.8rem;
+      }
+
+      .film-details__description--dots {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+      }
+
+      .film-details__toggle-desc-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        outline: 0;
+        text-align: right;
+        border: none;
+        color: $grey;
+        background-color: $accent-color-5;
+      }
+    }
+  }
+
+  .film-details__rating-and-like {
+    position: relative;
+    height: 2rem;
+
+    .film-details__rating-icon {
+      margin: 6px 5px 6px 0;
+      font-size: 1.2rem;
+      color: $accent-color-3;
+    }
+
+    .film-details__rating {
+      margin: 5px 0;
+      font-size: 1.2rem;
+      color: $grey;
+    }
+  }
+}
+
+.film-details__loader {
+  display: flex;
+  height: calc(100vh - 3.1rem - 3.7rem);
+  font-size: 2rem;
+  color: $accent-color-2;
+  align-items: center;
+  justify-content: center;
+}
+
+.film-details__no-results > h2 {
+  margin-top: 2.5rem;
+  font-size: 0.9rem;
+}
+
+@include media-breakpoint-up(md) {
+  .film-details {
+    box-sizing: border-box;
+    width: $app-width-small;
+    margin: auto;
+    margin-top: 2.4rem;
+  }
+}

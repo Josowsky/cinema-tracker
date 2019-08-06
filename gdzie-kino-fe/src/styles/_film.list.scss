@@ -1,0 +1,35 @@
+.film-list {
+  margin-bottom: 5rem;
+}
+
+.film-list__loading {
+  height: calc(100vh - 3.1rem - 3.7rem);
+  font-size: 2rem;
+  color: $accent-color-2;
+}
+
+@include media-breakpoint-up(sm) {
+  .film-list {
+    display: flex;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+
+    // Fix to make last element in the grid position properly
+    &::after {
+      width: 30rem;
+      height: 1px;
+      margin-right: 50px;
+      content: '';
+    }
+  }
+
+  .film-list--empty {
+    justify-content: center;
+
+    &::after {
+      display: none;
+    }
+  }
+}

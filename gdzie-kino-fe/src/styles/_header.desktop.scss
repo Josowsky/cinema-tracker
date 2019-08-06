@@ -1,0 +1,50 @@
+.header-desktop {
+  z-index: $z-index-header;
+  height: 4rem;
+  font-size: 1.4rem;
+  color: $accent-color-5;
+  background-color: $accent-color-1;
+  box-shadow: 0 3px 5px rgba(100, 100, 100, 0.49);
+}
+
+.header-desktop__wrapper {
+  width: 100%;
+  max-width: $app-width;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.header-desktop__logo-box {
+  padding-left: 1rem;
+}
+
+.header-desktop__separator {
+  width: 1px;
+  height: 2rem;
+  margin: 0 1rem;
+  background-color: rgba($accent-color-5, 0.3);
+}
+
+.header-desktop__search-input-container {
+  max-width: 18rem;
+  margin: 0 0.8rem;
+  color: $grey-light;
+
+  .header-search__remove-icon {
+    color: $grey-light;
+  }
+}
+
+.header-desktop__right-panel {
+  width: 9rem;
+  margin-right: 1rem;
+  margin-left: auto;
+
+  .header-desktop__separator {
+    margin: 0;
+  }
+
+  svg {
+    color: $accent-color-5;
+  }
+}

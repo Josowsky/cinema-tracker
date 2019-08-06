@@ -1,0 +1,58 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+@import "variables";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Lato", sans-serif;
+  font-size: 15px;
+  background: $accent-color-4;
+}
+
+button {
+  padding: 0;
+  font: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@import "film.list";
+@import "film.list.element";
+@import "film.details";
+@import "film.details.filter";
+@import "film.details.group";
+@import "film.details.group.seance";
+@import "header.mobile";
+@import "header.desktop";
+@import "header.search";
+@import "footer";
+@import "movie.theaters";
+@import "user.page";
+@import "transitions";
+@import "modals";
+@import "material.input";
+@import "favorites.list";
+@import "login.page";
+@import "err.not.found";
+@import "logo";
+@import "no.results";
+@import "film.favorites.icon";

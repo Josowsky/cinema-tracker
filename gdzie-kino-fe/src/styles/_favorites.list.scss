@@ -1,0 +1,52 @@
+.favorites-list {
+  margin-bottom: 5rem;
+}
+
+.favorites-list__title-icon {
+  font-size: 1.2rem;
+}
+
+.favorites-list__lack-of-results {
+  text-align: center;
+  color: $grey;
+}
+
+.favorites-list__loading {
+  height: 80vh;
+  font-size: 2rem;
+  color: $accent-color-2;
+}
+
+.favorites-list__not-logged {
+  width: 100%;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.favorites-list__not-logged-message {
+  margin: 1rem auto;
+  font-weight: 700;
+  color: #454545;
+}
+
+.favorites-list__login-button {
+  max-width: 20rem;
+  height: 3.5rem;
+  margin: 2rem auto 2rem;
+  font-weight: s700;
+  color: white;
+  background-color: $accent-color-1;
+  box-shadow: 0 3px 5px rgba(100, 100, 100, 0.49);
+  user-select: none;
+  cursor: pointer;
+}
+
+@include media-breakpoint-up(sm) {
+  .favorites-list {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}

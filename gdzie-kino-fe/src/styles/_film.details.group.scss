@@ -1,0 +1,32 @@
+
+.film-details-group {
+  width: 100%;
+  min-height: 2rem;
+
+  .film-details-group__header {
+    width: 100%;
+    height: 1.7rem;
+
+    .film-details-group__date {
+      margin: 10px 0 5px 32px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: $grey;
+    }
+  }
+}
+
+.film-details-group:last-child {
+  margin-bottom: 7.7rem;
+}
+
+@include media-breakpoint-up(md) {
+  .film-details-group {
+    width: $app-width-small;
+    margin: auto;
+  }
+
+  .film-details-group:last-child {
+    margin-bottom: 3.7rem;
+  }
+}

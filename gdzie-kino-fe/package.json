@@ -27,6 +27,7 @@
     "redux-thunk": "^2.3.0",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.5.2",
+    "styled-components": "^4.3.2",
     "uuid-v4": "^0.1.0"
   },
   "scripts": {

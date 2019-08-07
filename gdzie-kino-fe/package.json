@@ -10,6 +10,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.sortby": "^4.7.0",
+    "lodash.throttle": "^4.1.1",
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",

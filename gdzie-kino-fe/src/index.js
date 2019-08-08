@@ -15,34 +15,36 @@ import { Modals } from "./components/modals";
 import { FilmDetails } from "./components/film.details";
 import { MovieTheaters } from "./components/movie.theaters";
 import { UserPage } from "./components/user.page";
-import { FavoritesList } from "./components/favorites.list";
 import { LoginPage } from "./components/login.page";
 import { RegisterPage } from "./components/register.page";
 import { ErrNotFound } from "./components/err.not.found";
 import { ScrollToTop } from "./components/scroll.to.top";
+
+import { ViewportContextProvider } from "./components/context/ViewportContext/ViewportContext";
 
 ReactDOM.render(
   <div className="app">
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
-          <ScrollToTop>
-            <Header />
-            <Route exact path="/" component={MoviesList} />
-            <Route path="/film/:id" component={FilmDetails} />
-            <Route exact path="/konto" component={UserPage} />
-            <Route exact path="/kina" component={MovieTheaters} />
-            <Route exact path="/ulubione" component={FavoritesList} />
-            <AnonymousRoute exact path="/logowanie" component={LoginPage} />
-            <AnonymousRoute
-              exact
-              path="/rejestracja"
-              component={RegisterPage}
-            />
-            <AnonymousRoute exact path="/404" component={ErrNotFound} />
-            <Footer />
-            <Modals />
-          </ScrollToTop>
+          <ViewportContextProvider>
+            <ScrollToTop>
+              <Header />
+              <Route exact path="/" component={MoviesList} />
+              <Route path="/film/:id" component={FilmDetails} />
+              <Route exact path="/konto" component={UserPage} />
+              <Route exact path="/kina" component={MovieTheaters} />
+              <AnonymousRoute exact path="/logowanie" component={LoginPage} />
+              <AnonymousRoute
+                exact
+                path="/rejestracja"
+                component={RegisterPage}
+              />
+              <AnonymousRoute exact path="/404" component={ErrNotFound} />
+              <Footer />
+              <Modals />
+            </ScrollToTop>
+          </ViewportContextProvider>
         </Router>
       </PersistGate>
     </Provider>

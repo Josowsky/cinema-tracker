@@ -37,7 +37,7 @@ const FooterMenu = ({ location: { pathname } }) => (
       const isSelected = arePathsEqual(route, pathname);
 
       return (
-        <StyledMenuElement to={route} isSelected={isSelected}>
+        <StyledMenuElement key={route} to={route} isSelected={isSelected}>
           <StyledIcon isSelected={isSelected}>
             <Icon />
           </StyledIcon>

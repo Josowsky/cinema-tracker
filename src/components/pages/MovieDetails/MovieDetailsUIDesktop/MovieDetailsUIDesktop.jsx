@@ -4,6 +4,9 @@ import { arrayOf, bool, number, string, shape, oneOf } from "prop-types";
 import { MovieShortInfo } from "./MovieShortInfo/MovieShortInfo";
 import { MovieDescription } from "./MovieDescription/MovieDescription";
 import { MovieShowings } from "./MovieShowings/MovieShowings";
+import { MovieDetailsContentLoader } from "./MovieDetailsContentLoader/MovieDetailsContentLoader";
+import { MovieShortInfoLoader } from "./MovieShortInfoLoader/MovieShortInfoLoader";
+import { MoviePosterLoader } from "./MoviePosterLoader/MoviePosterLoader";
 
 import {
   StyledContainer,
@@ -30,20 +33,25 @@ const MovieDetailsUIDesktop = ({
   <StyledContainer>
     <StyledBanner bannerUrl={banner}>
       <StyledBannerContent>
+        {isLoading && <MoviePosterLoader />}
         {image && <StyledPoster src={image} alt={name} />}
         <StyledMovieInfo>
-          <MovieShortInfo
-            title={name}
-            time={duration}
-            rating={rating}
-            genre={genre}
-          />
+          {isLoading && <MovieShortInfoLoader />}
+          {!isLoading && (
+            <MovieShortInfo
+              title={name}
+              time={duration}
+              rating={rating}
+              genre={genre}
+            />
+          )}
         </StyledMovieInfo>
       </StyledBannerContent>
     </StyledBanner>
     <StyledContentContainer>
-      <MovieDescription description={description} />
-      <MovieShowings groups={showings} />
+      {isLoading && <MovieDetailsContentLoader />}
+      {!isLoading && <MovieDescription description={description} />}
+      {!isLoading && <MovieShowings groups={showings} />}
     </StyledContentContainer>
   </StyledContainer>
 );

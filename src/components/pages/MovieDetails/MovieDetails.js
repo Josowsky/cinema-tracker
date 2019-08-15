@@ -6,7 +6,6 @@ import get from "lodash.get";
 import { FilmDetailsFilter } from "../../film.details.filter";
 import { FILTERS_DEFAULTS } from "../../film.details.filter";
 import { FilmDetailsGroup } from "../../film.details.group";
-import { InlineLoading } from "../../loading";
 import { NoResults } from "../../no.results";
 // import { applySeanceFilters } from "../../utils/filters";
 import { getFormattedDuration } from "../../../utils/filmDetails";
@@ -37,14 +36,6 @@ const MovieDetails = ({ match }) => {
       [filterName]: !filters[filterName]
     }));
   };
-
-  if (isLoadingMovie) {
-    return (
-      <div className="film-details__loader">
-        <InlineLoading />
-      </div>
-    );
-  }
 
   return (
     <MovieDetailsUIDesktop movie={movie} isLoading={isLoadingMovie} />

@@ -1,21 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import { FaCircleNotch } from "react-icons/fa";
 
-const InlineLoading = ({ className }) => {
+const InlineLoading = ({ className = "" }) => {
   return (
     <div>
-      <i className={ classnames('fas fa-circle-notch fa-spin', className) } aria-hidden="true" />
+      <FaCircleNotch className={className} />
     </div>
   );
 };
 
 InlineLoading.propTypes = {
-  className: PropTypes.string,
-};
-
-InlineLoading.defaultProps = {
-  className: '',
+  className: PropTypes.string
 };
 
 export { InlineLoading };

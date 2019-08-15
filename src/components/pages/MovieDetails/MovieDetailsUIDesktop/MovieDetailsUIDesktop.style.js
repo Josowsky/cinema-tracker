@@ -12,6 +12,7 @@ export const StyledBanner = styled.div`
   width: 100%;
   height: 380px;
   display: flex;
+  padding: 0 32px;
   background: ${({ bannerUrl }) =>
       bannerUrl
         ? "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))"
@@ -45,7 +46,7 @@ export const StyledMovieInfo = styled.div`
 
 export const StyledContentContainer = styled.div`
   max-width: 1300px;
-  padding-left: 282px;
+  padding: 0 32px 0 314px;
   box-sizing: border-box;
   margin: auto;
 `;

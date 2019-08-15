@@ -11,7 +11,7 @@ import { MoviesList } from "./components/pages/MoviesList/MoviesList";
 import { Header } from "./components/header";
 import { FooterMenu } from "./components/ui/FooterMenu/FooterMenu";
 import { Modals } from "./components/modals";
-import { FilmDetails } from "./components/film.details";
+import { MovieDetails } from "./components/pages/MovieDetails/MovieDetails";
 import { MovieTheaters } from "./components/movie.theaters";
 import { ScrollToTop } from "./components/scroll.to.top";
 
@@ -25,9 +25,11 @@ ReactDOM.render(
           <ViewportContextProvider>
             <ScrollToTop>
               <Header />
-              <Route exact path="/" component={MoviesList} />
-              <Route path="/film/:id" component={FilmDetails} />
-              <Route exact path="/kina" component={MovieTheaters} />
+              <div className="app_container">
+                <Route exact path="/" component={MoviesList} />
+                <Route path="/film/:id" component={MovieDetails} />
+                <Route exact path="/kina" component={MovieTheaters} />
+              </div>
               <FooterMenu />
               <Modals />
             </ScrollToTop>

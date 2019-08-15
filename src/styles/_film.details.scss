@@ -1,6 +1,6 @@
 .film-details {
-  padding: 1.6rem 1rem 1.7rem 1rem;
-  background-color: $accent-color-5;
+  // padding: 1.6rem 1rem 1.7rem 1rem;
+  // background-color: $accent-color-5;
 
   .film-details__poster-and-desc {
     min-height: 131px;
@@ -104,11 +104,11 @@
   font-size: 0.9rem;
 }
 
-@include media-breakpoint-up(md) {
-  .film-details {
-    box-sizing: border-box;
-    width: $app-width-small;
-    margin: auto;
-    margin-top: 2.4rem;
-  }
-}
+// @include media-breakpoint-up(md) {
+//   .film-details {
+//     box-sizing: border-box;
+//     width: $app-width-small;
+//     margin: auto;
+//     margin-top: 2.4rem;
+//   }
+// }

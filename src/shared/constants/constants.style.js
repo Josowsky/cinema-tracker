@@ -19,3 +19,10 @@ export const zIndexLoading = 999;
 export const zIndexMenu = 2;
 export const zIndexModals = 14;
 export const zIndexNotifications = 13;
+
+/**
+ * Format
+ */
+export const appWidth = 1600;
+export const appWidthSmall = 700;
+export const grid = 16;

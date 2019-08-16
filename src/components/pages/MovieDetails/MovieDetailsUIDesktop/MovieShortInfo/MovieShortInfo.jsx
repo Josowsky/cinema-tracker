@@ -14,13 +14,17 @@ import {
 const MovieShortInfo = ({ title, time, rating, genre }) => (
   <StyledContainer>
     <StyledTitle>{title}</StyledTitle>
-    <StyledTime>
-      <StyledTimeIcon /> {time}
-    </StyledTime>
-    <StyledRating>
-      <StyledRatingIcon />
-      {rating}
-    </StyledRating>
+    {time && (
+      <StyledTime>
+        <StyledTimeIcon /> {time}
+      </StyledTime>
+    )}
+    {rating && (
+      <StyledRating>
+        <StyledRatingIcon />
+        {rating}
+      </StyledRating>
+    )}
     <StyledGenre>Gatunek: {genre}</StyledGenre>
   </StyledContainer>
 );

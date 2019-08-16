@@ -1,7 +1,6 @@
 export const useMovieFetch = () => ({
-  isFetching: true,
-  data: {},
-  dataa: {
+  isFetching: false,
+  data: {
     genre: "Sci-Fi",
     id: 1,
     image:

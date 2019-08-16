@@ -1,7 +1,9 @@
 import React from "react";
-import { arrayOf, bool, string, shape, oneOf } from "prop-types";
+import { arrayOf, func, bool, string, shape, oneOf } from "prop-types";
+import noop from "lodash.noop";
 
 import { ShowingGroup } from "./ShowingGroup/ShowingGroup";
+import { ShowingsFilters } from "./ShowingsFilters/ShowingsFilters";
 
 import {
   StyledContainer,
@@ -9,9 +11,10 @@ import {
   StyledShowingsGroup
 } from "./MovieShowings.style";
 
-const MovieShowings = ({ filters, groups }) => (
+const MovieShowings = ({ filters = {}, onFiltersChange = noop, groups }) => (
   <StyledContainer>
     <StyledTitle>Sense</StyledTitle>
+    <ShowingsFilters filters={filters} onChange={onFiltersChange} />
     {groups &&
       groups.map(group => (
         <StyledShowingsGroup>
@@ -40,7 +43,12 @@ MovieShowings.propTypes = {
         })
       )
     })
-  )
+  ),
+  filters: shape({
+    dialoguesType: oneOf(["subtitles", "dubbing"]),
+    screenType: oneOf(["2D", "3D"])
+  }),
+  onFiltersChange: func
 };
 
 export { MovieShowings };

@@ -4,12 +4,12 @@ import { withRouter } from "react-router-dom";
 import get from "lodash.get";
 
 import { FilmDetailsFilter } from "../../film.details.filter";
-import { FILTERS_DEFAULTS } from "../../film.details.filter";
 import { FilmDetailsGroup } from "../../film.details.group";
 import { NoResults } from "../../no.results";
 // import { applySeanceFilters } from "../../utils/filters";
 import { getFormattedDuration } from "../../../utils/filmDetails";
 import { useMovieFetch } from "./MovieDetails.hooks";
+import { DEFAULT_SHOWINGS_FILTERS } from "./MovieDetails.constants";
 
 import { MovieDetailsUIDesktop } from "./MovieDetailsUIDesktop/MovieDetailsUIDesktop";
 
@@ -28,17 +28,30 @@ const MovieDetails = ({ match }) => {
   const isLoadingMovie = movieData.isFetching;
   const movie = movieData.data;
 
-  const [filters, setFilters] = useState(FILTERS_DEFAULTS);
+  const [filters, setFilters] = useState(DEFAULT_SHOWINGS_FILTERS);
 
-  const handleToggleFilter = filterName => {
-    setFilters(filters => ({
-      ...filters,
-      [filterName]: !filters[filterName]
-    }));
+  const handleFilterChange = (filterName, filterValue) => {
+    setFilters(filters => {
+      if (filters[filterName] === filterValue)
+        return {
+          ...filters,
+          [filterName]: null
+        };
+
+      return {
+        ...filters,
+        [filterName]: filterValue
+      };
+    });
   };
 
   return (
-    <MovieDetailsUIDesktop movie={movie} isLoading={isLoadingMovie} />
+    <MovieDetailsUIDesktop
+      movie={movie}
+      isLoading={isLoadingMovie}
+      filters={filters}
+      onFilterChange={handleFilterChange}
+    />
     // <div>
     //   <div>
     //     <div className="d-flex align-items film-details__poster-and-desc">

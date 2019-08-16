@@ -1,5 +1,5 @@
 import React from "react";
-import { arrayOf, bool, number, string, shape, oneOf } from "prop-types";
+import { arrayOf, func, bool, number, string, shape, oneOf } from "prop-types";
 
 import { MovieShortInfo } from "./MovieShortInfo/MovieShortInfo";
 import { MovieDescription } from "./MovieDescription/MovieDescription";
@@ -28,7 +28,9 @@ const MovieDetailsUIDesktop = ({
     rating,
     genre,
     showings
-  } = {}
+  } = {},
+  filters,
+  onFilterChange
 }) => (
   <StyledContainer>
     <StyledBanner bannerUrl={banner}>
@@ -51,7 +53,13 @@ const MovieDetailsUIDesktop = ({
     <StyledContentContainer>
       {isLoading && <MovieDetailsContentLoader />}
       {!isLoading && <MovieDescription description={description} />}
-      {!isLoading && <MovieShowings groups={showings} />}
+      {!isLoading && (
+        <MovieShowings
+          groups={showings}
+          filters={filters}
+          onFiltersChange={onFilterChange}
+        />
+      )}
     </StyledContentContainer>
   </StyledContainer>
 );
@@ -86,7 +94,12 @@ MovieDetailsUIDesktop.propTypes = {
       })
     )
   }).isRequired,
-  isLoading: bool
+  isLoading: bool,
+  filters: shape({
+    dialoguesType: oneOf(["subtitles", "dubbing"]),
+    screenType: oneOf(["2D", "3D"])
+  }),
+  onFilterChange: func.isRequired
 };
 
 export { MovieDetailsUIDesktop };

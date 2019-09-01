@@ -16,12 +16,14 @@ import {
   StyledTicketLink
 } from "./ShowingGroup.style";
 
-const ShowingGroup = ({ group: { date, seances } } = {}) => (
-  <section>
-    <StyledTitle>{date}</StyledTitle>
-    <StyledShowingsContainer>
-      {seances &&
-        seances.map(
+const ShowingGroup = ({ group: { date, seances } } = {}) => {
+  if (!seances) return null;
+
+  return (
+    <section>
+      <StyledTitle>{date}</StyledTitle>
+      <StyledShowingsContainer>
+        {seances.map(
           ({
             dateTime: { date: showingDate },
             cinema: { name: cinemaName },
@@ -46,9 +48,10 @@ const ShowingGroup = ({ group: { date, seances } } = {}) => (
             </StyledShowing>
           )
         )}
-    </StyledShowingsContainer>
-  </section>
-);
+      </StyledShowingsContainer>
+    </section>
+  );
+};
 
 ShowingGroup.propTypes = {
   group: shape({

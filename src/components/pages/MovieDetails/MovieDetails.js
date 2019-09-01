@@ -6,9 +6,8 @@ import get from "lodash.get";
 import { FilmDetailsFilter } from "../../film.details.filter";
 import { FilmDetailsGroup } from "../../film.details.group";
 import { NoResults } from "../../no.results";
-// import { applySeanceFilters } from "../../utils/filters";
 import { getFormattedDuration } from "../../../utils/filmDetails";
-import { useMovieFetch } from "./MovieDetails.hooks";
+import { useMovieFetch, useMovieFilters } from "./MovieDetails.hooks";
 import { DEFAULT_SHOWINGS_FILTERS } from "./MovieDetails.constants";
 
 import { MovieDetailsUIDesktop } from "./MovieDetailsUIDesktop/MovieDetailsUIDesktop";
@@ -22,13 +21,14 @@ import { StyledContainer } from "./MovieData.style";
 // show loader if api is fetching data
 const MovieDetails = ({ match }) => {
   const movieId = get(match, "params.id", null);
+  const [filters, setFilters] = useState(DEFAULT_SHOWINGS_FILTERS);
 
   const movieData = useMovieFetch(movieId);
 
   const isLoadingMovie = movieData.isFetching;
   const movie = movieData.data;
 
-  const [filters, setFilters] = useState(DEFAULT_SHOWINGS_FILTERS);
+  const filteredMovie = useMovieFilters(movie, filters);
 
   const handleFilterChange = (filterName, filterValue) => {
     setFilters(filters => {
@@ -47,7 +47,7 @@ const MovieDetails = ({ match }) => {
 
   return (
     <MovieDetailsUIDesktop
-      movie={movie}
+      movie={filteredMovie}
       isLoading={isLoadingMovie}
       filters={filters}
       onFilterChange={handleFilterChange}

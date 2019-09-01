@@ -1,6 +1,5 @@
 import React from "react";
 
-import { InlineLoading } from "../../loading";
 import { MoviesListElement } from "../../ui/MoviesListElement/MoviesListElement";
 import { NoResults } from "../../no.results";
 import { useMoviesFetch } from "./MovieList.hooks";
@@ -16,7 +15,7 @@ const MoviesList = () => {
   if (isLoadingMovies)
     return (
       <StyledLoadingContainer>
-        <InlineLoading />
+        {/* <InlineLoading /> */}Loading
       </StyledLoadingContainer>
     );
 

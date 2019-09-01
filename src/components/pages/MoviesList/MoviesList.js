@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MoviesListElement } from "../../ui/MoviesListElement/MoviesListElement";
-import { NoResults } from "../../no.results";
+import { NoResults } from "../../ui/NoResults/NoResults";
 import { useMoviesFetch } from "./MovieList.hooks";
 
 import { StyledContainer, StyledLoadingContainer } from "./MoviesList.style";

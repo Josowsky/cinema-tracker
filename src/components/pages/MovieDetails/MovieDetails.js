@@ -7,6 +7,7 @@ import { useMovieFetch, useMovieFilters } from "./MovieDetails.hooks";
 import { DEFAULT_SHOWINGS_FILTERS } from "./MovieDetails.constants";
 
 import { MovieDetailsUIDesktop } from "./MovieDetailsUIDesktop/MovieDetailsUIDesktop";
+import { MovieDetailsUIMobile } from "./MovieDetailsUIMobile/MovieDetailsUIMobile";
 
 const MovieDetails = ({ match }) => {
   const movieId = get(match, "params.id", null);
@@ -35,7 +36,8 @@ const MovieDetails = ({ match }) => {
   };
 
   return (
-    <MovieDetailsUIDesktop
+    // <MovieDetailsUIDesktop
+    <MovieDetailsUIMobile
       movie={filteredMovie}
       isLoading={isLoadingMovie}
       filters={filters}

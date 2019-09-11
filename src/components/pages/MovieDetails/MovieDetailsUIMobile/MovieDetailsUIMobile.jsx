@@ -2,6 +2,7 @@ import React from "react";
 import { arrayOf, func, bool, number, string, shape, oneOf } from "prop-types";
 
 import { MovieMobileHeader } from "./MovieMobileHeader/MovieMobileHeader";
+import { ShowingsMobileFilters } from "./ShowingsMobileFilters/ShowingsMobileFilters";
 
 const MovieDetailsUIMobile = ({
   isLoading = false,
@@ -27,7 +28,7 @@ const MovieDetailsUIMobile = ({
       rating={rating}
       isLoading
     />
-    <section>filtry</section>
+    <ShowingsMobileFilters filters={filters} onFilterChange={onFilterChange} />
     <section>seanse</section>
   </div>
 );

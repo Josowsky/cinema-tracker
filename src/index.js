@@ -7,10 +7,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import "./styles/styles.scss";
 
 import { persistor, store } from "./store";
-import { MoviesList } from "./components/pages/MoviesList/MoviesList";
 import { Header } from "./components/ui/Header/Header";
 import { FooterMenu } from "./components/ui/FooterMenu/FooterMenu";
-import { Modals } from "./components/modals";
+import { MoviesList } from "./components/pages/MoviesList/MoviesList";
 import { MovieDetails } from "./components/pages/MovieDetails/MovieDetails";
 import { MovieTheaters } from "./components/movie.theaters";
 import { ScrollToTop } from "./components/scroll.to.top";
@@ -31,7 +30,6 @@ ReactDOM.render(
                 <Route exact path="/kina" component={MovieTheaters} />
               </div>
               <FooterMenu />
-              <Modals />
             </ScrollToTop>
           </ViewportContextProvider>
         </Router>

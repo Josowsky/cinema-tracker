@@ -3,35 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-plugin-transform-function-bind": "^6.22.0",
-    "bootstrap": "^4.3.1",
-    "classnames": "^2.2.6",
-    "gsap-promise": "^2.0.0",
-    "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.noop": "^3.0.1",
-    "lodash.sortby": "^4.7.0",
     "lodash.throttle": "^4.1.1",
-    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-content-loader": "^4.2.2",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
-    "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "react-transition-group": "^4.2.2",
-    "redux": "^4.0.4",
-    "redux-batched-subscribe": "^0.1.6",
-    "redux-logger": "^3.0.6",
-    "redux-multi": "^0.1.12",
-    "redux-observable": "^1.1.0",
-    "redux-persist": "^5.10.0",
-    "redux-thunk": "^2.3.0",
-    "rxjs": "^6.5.2",
-    "rxjs-compat": "^6.5.2",
-    "styled-components": "^4.3.2",
-    "uuid-v4": "^0.1.0"
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -57,9 +38,6 @@
   "babel": {
     "presets": [
       "react-app"
-    ],
-    "plugins": [
-      "transform-function-bind"
     ]
   }
 }

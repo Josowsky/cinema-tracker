@@ -26,3 +26,4 @@ export const zIndexNotifications = 13;
 export const appWidth = 1600;
 export const appWidthSmall = 700;
 export const grid = 16;
+export const mobileFooterHeight = 60;

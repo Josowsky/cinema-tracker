@@ -3,6 +3,9 @@ import { arrayOf, func, bool, number, string, shape, oneOf } from "prop-types";
 
 import { MovieMobileHeader } from "./MovieMobileHeader/MovieMobileHeader";
 import { ShowingsMobileFilters } from "./ShowingsMobileFilters/ShowingsMobileFilters";
+import { ShowingMobileGroup } from "./ShowingMobileGroup/ShowingMobileGroup";
+
+import { StyledContainer } from "./MovieDetailsUIMobile.style";
 
 const MovieDetailsUIMobile = ({
   isLoading = false,
@@ -19,7 +22,7 @@ const MovieDetailsUIMobile = ({
   filters,
   onFilterChange
 }) => (
-  <div>
+  <StyledContainer>
     <MovieMobileHeader
       image={image}
       title={name}
@@ -29,8 +32,10 @@ const MovieDetailsUIMobile = ({
       isLoading
     />
     <ShowingsMobileFilters filters={filters} onFilterChange={onFilterChange} />
-    <section>seanse</section>
-  </div>
+    {showings.map(group => (
+      <ShowingMobileGroup key={group.date} group={group} />
+    ))}
+  </StyledContainer>
 );
 
 MovieDetailsUIMobile.propTypes = {

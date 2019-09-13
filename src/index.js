@@ -11,8 +11,6 @@ import { Header } from "./components/ui/Header/Header";
 import { FooterMenu } from "./components/ui/FooterMenu/FooterMenu";
 import { MoviesList } from "./components/pages/MoviesList/MoviesList";
 import { MovieDetails } from "./components/pages/MovieDetails/MovieDetails";
-import { MovieTheaters } from "./components/movie.theaters";
-import { ScrollToTop } from "./components/scroll.to.top";
 
 import { ViewportContextProvider } from "./components/context/ViewportContext/ViewportContext";
 
@@ -22,15 +20,12 @@ ReactDOM.render(
       <PersistGate loading={null} persistor={persistor}>
         <Router>
           <ViewportContextProvider>
-            <ScrollToTop>
-              <Header />
-              <div className="app_container">
-                <Route exact path="/" component={MoviesList} />
-                <Route path="/film/:id" component={MovieDetails} />
-                <Route exact path="/kina" component={MovieTheaters} />
-              </div>
-              <FooterMenu />
-            </ScrollToTop>
+            <Header />
+            <div className="app_container">
+              <Route exact path="/" component={MoviesList} />
+              <Route path="/film/:id" component={MovieDetails} />
+            </div>
+            <FooterMenu />
           </ViewportContextProvider>
         </Router>
       </PersistGate>

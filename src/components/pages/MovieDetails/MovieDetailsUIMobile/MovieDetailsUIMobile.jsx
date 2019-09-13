@@ -29,7 +29,7 @@ const MovieDetailsUIMobile = ({
       description={description}
       duration={duration}
       rating={rating}
-      isLoading
+      isLoading={isLoading}
     />
     <ShowingsMobileFilters filters={filters} onFilterChange={onFilterChange} />
     {showings.map(group => (

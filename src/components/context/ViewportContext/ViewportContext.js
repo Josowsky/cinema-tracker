@@ -10,7 +10,7 @@ import {
 
 export const ViewportContext = createContext({});
 
-const someFunction = setState =>
+const updateViewportContext = (setState, throttleTime = 150) =>
   throttle(() => {
     const viewportWidth = window.innerWidth;
 
@@ -20,7 +20,7 @@ const someFunction = setState =>
       isLgUp: viewportWidth >= LG_MIN_WIDTH,
       isXlUp: viewportWidth >= XL_MIN_WIDTH
     });
-  }, 150);
+  }, throttleTime);
 
 export const ViewportContextProvider = ({ children }) => {
   const [viewportData, setViewportData] = useState({
@@ -31,9 +31,10 @@ export const ViewportContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    window.addEventListener("resize", someFunction(setViewportData));
+    window.addEventListener("resize", updateViewportContext(setViewportData));
+    updateViewportContext(setViewportData, 0)();
 
-    return () => window.removeEventListener("resize", someFunction);
+    return () => window.removeEventListener("resize", updateViewportContext);
   }, []);
 
   return (

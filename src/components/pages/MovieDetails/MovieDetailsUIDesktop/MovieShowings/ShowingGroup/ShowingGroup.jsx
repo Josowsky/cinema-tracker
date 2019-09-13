@@ -16,8 +16,8 @@ import {
   StyledTicketLink
 } from "./ShowingGroup.style";
 
-const ShowingGroup = ({ group: { date, seances } } = {}) => {
-  if (!seances) return null;
+const ShowingGroup = ({ group: { date, seances = [] } } = {}) => {
+  if (seances.length === 0) return null;
 
   return (
     <section>

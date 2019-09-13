@@ -8,7 +8,7 @@ import "./styles/styles.scss";
 
 import { persistor, store } from "./store";
 import { MoviesList } from "./components/pages/MoviesList/MoviesList";
-import { Header } from "./components/header";
+import { Header } from "./components/ui/Header/Header";
 import { FooterMenu } from "./components/ui/FooterMenu/FooterMenu";
 import { Modals } from "./components/modals";
 import { MovieDetails } from "./components/pages/MovieDetails/MovieDetails";

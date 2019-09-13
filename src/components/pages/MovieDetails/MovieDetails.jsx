@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { object } from "prop-types";
 import { withRouter } from "react-router-dom";
 import get from "lodash.get";
 
 import { useMovieFetch, useMovieFilters } from "./MovieDetails.hooks";
 import { DEFAULT_SHOWINGS_FILTERS } from "./MovieDetails.constants";
+import { ViewportContext } from "../../context/ViewportContext/ViewportContext";
 
 import { MovieDetailsUIDesktop } from "./MovieDetailsUIDesktop/MovieDetailsUIDesktop";
 import { MovieDetailsUIMobile } from "./MovieDetailsUIMobile/MovieDetailsUIMobile";
@@ -35,8 +36,20 @@ const MovieDetails = ({ match }) => {
     });
   };
 
+  const { isMdUp } = useContext(ViewportContext);
+
+  if (isMdUp) {
+    return (
+      <MovieDetailsUIDesktop
+        movie={filteredMovie}
+        isLoading={isLoadingMovie}
+        filters={filters}
+        onFilterChange={handleFilterChange}
+      />
+    );
+  }
+
   return (
-    // <MovieDetailsUIDesktop
     <MovieDetailsUIMobile
       movie={filteredMovie}
       isLoading={isLoadingMovie}

@@ -3,7 +3,7 @@ import { arrayOf, bool, string, shape, oneOf } from "prop-types";
 
 import { ShowingType } from "./ShowingType/ShowingType";
 import { ShowingDimension } from "./ShowingDimension/ShowingDimension";
-import { getShowingTime } from "./ShowingGroup.utils";
+import { getShowingTime } from "../../../../../../shared/utils/getShowingTime";
 
 import {
   StyledTitle,

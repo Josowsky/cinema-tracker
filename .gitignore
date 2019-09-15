@@ -8,8 +8,8 @@
 # testing
 /coverage
 
-# production
-/build
+client/build
+client/node_modules
 
 # misc
 .DS_Store

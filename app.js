@@ -4,17 +4,9 @@ const graphqlHTTP = require('express-graphql');
 const { buildSchema } = require('graphql');
 
 const schema = buildSchema(`
-  interface dateTime {
-    date: String
-  }
-
-  interface Cinema {
-    name: String
-  }
-
   type Seance {
-    dateTime:dateTime
-    cinema: Cinema
+    date: String
+    cinema: String
     subtitles: String
     dimensionality: String
     dubbing: Boolean
@@ -44,34 +36,198 @@ const schema = buildSchema(`
   }
 `);
 
-// The root provides a resolver function for each API endpoint
-const root = {
-  movies: () => [
-    {
-      genre: 'Drama',
-      id: 1,
-      image: 'https://sphoto.nasza-klasa.pl/8891700/3/main/f716f0214c.jpeg',
-      rating: 5.4,
-      name: 'Olden The Movie',
-      showings: [
-        {
-          dataTime: {
+const MOVIES = {
+  1: {
+    genre: 'Dramat historyczny',
+    id: 1,
+    image: 'https://images-na.ssl-images-amazon.com/images/I/51o9U06EV8L.jpg',
+    rating: 8.1,
+    name: 'Gladiator',
+    showings: [
+      {
+        date: '2019-08-09',
+        seances: [
+          {
             date: '2019-08-09 13:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '2D',
+            dubbing: true,
+            url: 'https://google.com',
           },
-        },
-        {
-          dataTime: {
-            date: '2019-08-09 15:00:00.000000',
+          {
+            date: '2019-08-09 20:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: true,
+            dimensionality: '2D',
+            dubbing: false,
+            url: 'https://google.com',
           },
-        },
-        {
-          dataTime: {
-            date: '2019-08-09 20:30:00.000000',
+        ],
+      },
+      {
+        date: '2019-08-10',
+        seances: [
+          {
+            date: '2019-08-10 13:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '3D',
+            dubbing: true,
+            url: 'https://google.com',
           },
-        },
-      ],
-    },
-  ],
+          {
+            date: '2019-08-10 20:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '3D',
+            dubbing: true,
+            url: 'https://google.com',
+          },
+        ],
+      },
+      {
+        date: '2019-08-11',
+        seances: [
+          {
+            date: '2019-08-11 13:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '2D',
+            dubbing: true,
+            url: 'https://google.com',
+          },
+          {
+            date: '2019-08-11 20:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: true,
+            dimensionality: '3D',
+            dubbing: false,
+            url: 'https://google.com',
+          },
+        ],
+      },
+      {
+        date: '2019-08-12',
+        seances: [
+          {
+            date: '2019-08-12 13:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '2D',
+            dubbing: true,
+            url: 'https://google.com',
+          },
+          {
+            date: '2019-08-12 20:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: true,
+            dimensionality: '3D',
+            dubbing: false,
+            url: 'https://google.com',
+          },
+        ],
+      },
+    ],
+  },
+  2: {
+    genre: 'Thriller',
+    id: 2,
+    image: 'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwix8L-GttbkAhWDlIsKHdfcCn0QjRx6BAgBEAQ&url=https%3A%2F%2Fwww.amazon.com%2FPrisoners-Poster-27-40-102cm%2Fdp%2FB00KAL2JYE&psig=AOvVaw3X4gh5yktVXuHO7DGqVZgP&ust=1568760374291457',
+    rating: 7.9,
+    name: 'Labirynt',
+    showings: [
+      {
+        date: '2019-08-09',
+        seances: [
+          {
+            date: '2019-08-09 13:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '2D',
+            dubbing: true,
+            url: 'https://google.com',
+          },
+          {
+            date: '2019-08-09 20:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: true,
+            dimensionality: '2D',
+            dubbing: false,
+            url: 'https://google.com',
+          },
+        ],
+      },
+      {
+        date: '2019-08-10',
+        seances: [
+          {
+            date: '2019-08-10 13:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '3D',
+            dubbing: true,
+            url: 'https://google.com',
+          },
+          {
+            date: '2019-08-10 20:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '3D',
+            dubbing: true,
+            url: 'https://google.com',
+          },
+        ],
+      },
+      {
+        date: '2019-08-11',
+        seances: [
+          {
+            date: '2019-08-11 13:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '2D',
+            dubbing: true,
+            url: 'https://google.com',
+          },
+          {
+            date: '2019-08-11 20:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: true,
+            dimensionality: '3D',
+            dubbing: false,
+            url: 'https://google.com',
+          },
+        ],
+      },
+      {
+        date: '2019-08-12',
+        seances: [
+          {
+            date: '2019-08-12 13:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: false,
+            dimensionality: '2D',
+            dubbing: true,
+            url: 'https://google.com',
+          },
+          {
+            date: '2019-08-12 20:00:00.000000',
+            cinema: 'Helios Poznań',
+            subtitles: true,
+            dimensionality: '3D',
+            dubbing: false,
+            url: 'https://google.com',
+          },
+        ],
+      },
+    ],
+  },
+};
+
+const root = {
+  movies: () => Object.keys(MOVIES).map((key) => MOVIES[key]),
+  movie: ({ id }) => MOVIES[id],
 };
 
 const app = express();
@@ -79,19 +235,13 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(
-  '/olden',
+  '/graphql',
   graphqlHTTP({
     schema,
     rootValue: root,
     graphiql: true,
   }),
 );
-
-app.get('/api/getList', (req, res) => {
-  const list = ['item1', 'item2', 'item3'];
-  res.json(list);
-  console.log('Sent list of items');
-});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(`${__dirname}/client/build/index.html`));

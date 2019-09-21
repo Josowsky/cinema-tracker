@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import errorhandler from 'errorhandler';
 import 'dotenv/config';
+import { sequelize } from './models';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -42,6 +43,8 @@ app.use((err, req, res) => {
   });
 });
 
-const server = app.listen(process.env.PORT || 5000, () => {
-  console.log(`Listening on port ${server.address().port}`);
+sequelize.sync().then(() => {
+  const server = app.listen(process.env.PORT || 5000, () => {
+    console.log(`Listening on port ${server.address().port}`);
+  });
 });

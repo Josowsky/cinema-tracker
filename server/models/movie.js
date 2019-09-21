@@ -9,8 +9,11 @@ const movie = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.TEXT,
     },
-    photo: {
+    poster: {
       type: DataTypes.STRING,
+    },
+    rating: {
+      type: DataTypes.FLOAT,
     },
   });
   return Movie;

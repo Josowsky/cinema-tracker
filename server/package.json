@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "db:reset": "node ./node_modules/@babel/node/bin/babel-node.js seeds/index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,8 @@
     "express": "^4.16.3",
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.5",
+    "lodash.sample": "^4.2.1",
+    "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
     "sequelize": "^5.19.0"

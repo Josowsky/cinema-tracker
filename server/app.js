@@ -1,6 +1,7 @@
-const express = require('express');
-const path = require('path');
-const errorhandler = require('errorhandler');
+import express from 'express';
+import path from 'path';
+import errorhandler from 'errorhandler';
+import 'dotenv/config';
 
 const isProduction = process.env.NODE_ENV === 'production';
 

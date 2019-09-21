@@ -2,7 +2,8 @@
   "extends": "eslint-config-airbnb-base",
   "plugins": ["eslint-plugin-import"],
   "rules": {
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "consistent-return": 0
   },
   "env": {}
 }

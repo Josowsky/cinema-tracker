@@ -4,9 +4,15 @@ import sample from 'lodash.sample';
 import models from '../models';
 
 const generateRandomShowing = ({
-  movieId, cinemaIds, dayOffset, time: { hour, minute },
+  movieId,
+  cinemaIds,
+  dayOffset,
+  time: { hour, minute },
 }) => ({
-  time: moment().subtract(dayOffset, 'days').hour(hour).minute(minute)
+  time: moment()
+    .add(dayOffset, 'days')
+    .hour(hour)
+    .minute(minute)
     .toDate(),
   url: 'https://google.com',
   data: {
@@ -21,6 +27,9 @@ const createShowings = async ({ movieId, cinemas }) => {
   const cinemaIds = cinemas.map((cinema) => cinema.id);
 
   const showingsData = [
+    { dayOffset: -1, time: { hour: 17, minute: 30 } },
+    { dayOffset: -1, time: { hour: 19, minute: 20 } },
+    { dayOffset: -1, time: { hour: 21, minute: 0 } },
     { dayOffset: 0, time: { hour: 17, minute: 30 } },
     { dayOffset: 0, time: { hour: 19, minute: 20 } },
     { dayOffset: 0, time: { hour: 21, minute: 0 } },

@@ -15,13 +15,18 @@ export const schema = buildSchema(`
     seances: [Seance!]
   }
 
+  type Duration {
+    hours: Int!
+    minutes: Int!
+  }
+
   type MovieDetails {
     genre: String
     id: Int!
     posterUrl: String
     bannerUrl: String
     rating: Float
-    duration: String
+    duration: Duration
     title: String
     description: String
     showings: [Showing!]

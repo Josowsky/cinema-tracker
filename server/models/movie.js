@@ -15,6 +15,9 @@ const movie = (sequelize, DataTypes) => {
     rating: {
       type: DataTypes.FLOAT,
     },
+    duration: {
+      type: DataTypes.INTEGER,
+    },
   });
   return Movie;
 };

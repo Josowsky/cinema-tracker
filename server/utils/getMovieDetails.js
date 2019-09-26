@@ -32,7 +32,10 @@ export const getMovieDetails = async ({ id }) => {
     posterUrl: movie.poster,
     bannerUrl: '',
     rating: movie.rating,
-    duration: '',
+    duration: {
+      hours: Math.floor(movie.duration / 60),
+      minutes: movie.duration % 60,
+    },
     title: movie.title,
     description: movie.description,
     showings: Object.keys(groupedSeances).map(date => ({

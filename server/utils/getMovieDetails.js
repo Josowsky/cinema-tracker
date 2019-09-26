@@ -6,11 +6,14 @@ import models from '../models';
 export const getMovieDetails = async ({ id }) => {
   const movie = await models.Movie.findByPk(id);
   const showings = await models.Showing.findAll({
-    where: { MovieId: movie.id, time: { [Op.gte]: moment().toDate() } },
+    where: {
+      MovieId: movie.id,
+      time: { [Op.gte]: moment().toDate() },
+    },
   }); // TODO: extract also cinema
 
   const groupedSeances = {};
-  showings.forEach((showing) => {
+  showings.forEach(showing => {
     // Ignore seances in the past
     if (!moment(showing.time).diff(moment())) return;
 
@@ -32,9 +35,9 @@ export const getMovieDetails = async ({ id }) => {
     duration: '',
     title: movie.title,
     description: movie.description,
-    showings: Object.keys(groupedSeances).map((date) => ({
+    showings: Object.keys(groupedSeances).map(date => ({
       date,
-      seances: groupedSeances[date].map((seance) => ({
+      seances: groupedSeances[date].map(seance => ({
         time: moment(seance.time).format('HH:MM'),
         // cinema: String,
         subtitles: seance.data.subtitles,

@@ -15,7 +15,7 @@ const models = {
   Showing: sequelize.import('./showing'),
 };
 
-Object.keys(models).forEach((key) => {
+Object.keys(models).forEach(key => {
   if ('associate' in models[key]) {
     models[key].associate(models);
   }

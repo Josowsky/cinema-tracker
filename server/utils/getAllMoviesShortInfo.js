@@ -5,7 +5,7 @@ import models from '../models';
 export const getAllMoviesShortInfo = async () => {
   const movies = await models.Movie.findAll();
 
-  const queryPromises = movies.map(async (movie) => {
+  const queryPromises = movies.map(async movie => {
     const showings = await models.Showing.findAll({
       where: { MovieId: movie.id },
       order: [['time', 'DESC']],
@@ -14,7 +14,9 @@ export const getAllMoviesShortInfo = async () => {
 
     return {
       movie,
-      showings: showings.map((showing) => moment(showing.time).format('HH:MM')),
+      showings: showings.map(showing =>
+        moment(showing.time).format('HH:MM'),
+      ),
     };
   });
 

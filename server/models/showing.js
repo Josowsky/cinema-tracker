@@ -11,7 +11,7 @@ const showing = (sequelize, DataTypes) => {
     },
   });
 
-  Showing.associate = (models) => {
+  Showing.associate = models => {
     Showing.belongsTo(models.Movie);
     Showing.belongsTo(models.Cinema);
   };

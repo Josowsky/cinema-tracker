@@ -24,7 +24,7 @@ const generateRandomShowing = ({
 });
 
 const createShowings = async ({ movieId, cinemas }) => {
-  const cinemaIds = cinemas.map((cinema) => cinema.id);
+  const cinemaIds = cinemas.map(cinema => cinema.id);
 
   const showingsData = [
     { dayOffset: -1, time: { hour: 17, minute: 30 } },
@@ -51,7 +51,9 @@ const createShowings = async ({ movieId, cinemas }) => {
     { dayOffset: 6, time: { hour: 17, minute: 30 } },
     { dayOffset: 6, time: { hour: 19, minute: 20 } },
     { dayOffset: 6, time: { hour: 22, minute: 45 } },
-  ].map((timeData) => generateRandomShowing({ ...timeData, movieId, cinemaIds }));
+  ].map(timeData =>
+    generateRandomShowing({ ...timeData, movieId, cinemaIds }),
+  );
 
   models.Showing.bulkCreate(showingsData);
 };

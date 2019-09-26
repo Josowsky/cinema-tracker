@@ -12,6 +12,8 @@ sequelize.sync({ force: true }).then(async () => {
     const cinemas = await createCinemas();
     const movies = await createMovies();
 
-    movies.forEach((movie) => createShowings({ movieId: movie.id, cinemas }));
+    movies.forEach(movie =>
+      createShowings({ movieId: movie.id, cinemas }),
+    );
   }
 });

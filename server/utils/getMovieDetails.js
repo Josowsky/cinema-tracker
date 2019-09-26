@@ -10,7 +10,12 @@ export const getMovieDetails = async ({ id }) => {
       MovieId: movie.id,
       time: { [Op.gte]: moment().toDate() },
     },
-  }); // TODO: extract also cinema
+    include: [
+      {
+        model: models.Cinema,
+      },
+    ],
+  });
 
   const groupedSeances = {};
   showings.forEach(showing => {
@@ -30,6 +35,10 @@ export const getMovieDetails = async ({ id }) => {
     genre: movie.genre,
     id: movie.id,
     posterUrl: movie.poster,
+    /**
+     * We don't have access to banner yet.
+     * This field will be returned when crawler will be able to provide it.
+     */
     bannerUrl: '',
     rating: movie.rating,
     duration: {
@@ -42,7 +51,7 @@ export const getMovieDetails = async ({ id }) => {
       date,
       seances: groupedSeances[date].map(seance => ({
         time: moment(seance.time).format('HH:MM'),
-        // cinema: String,
+        cinema: seance.Cinema.dataValues.name,
         subtitles: seance.data.subtitles,
         dimensionality: seance.data.dimensionality,
         dubbing: !seance.data.subtitles,

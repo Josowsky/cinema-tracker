@@ -3,6 +3,11 @@ import { Op } from 'sequelize';
 
 import models from '../models';
 
+/**
+ * Returns details for a single movie.
+ * Structure of the returned object follows the Graphql schema.
+ * @param {number} id - Id of a movie.
+ */
 export const getMovieDetails = async ({ id }) => {
   const movie = await models.Movie.findByPk(id);
   const showings = await models.Showing.findAll({

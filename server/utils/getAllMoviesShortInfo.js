@@ -2,6 +2,12 @@ import moment from 'moment';
 
 import models from '../models';
 
+/**
+ * Returns list of all movies.
+ * Structure of the returned object follows the Graphql schema.
+ * For each movie, there is a "showingsTime" field which contains the array of closest showing times.
+ * "showingsTime" array is 4 elements max.
+ */
 export const getAllMoviesShortInfo = async () => {
   const movies = await models.Movie.findAll();
 

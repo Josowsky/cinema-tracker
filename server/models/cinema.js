@@ -1,6 +1,6 @@
 const cinema = (sequelize, DataTypes) => {
   const Cinema = sequelize.define('Cinema', {
-    username: {
+    name: {
       type: DataTypes.STRING,
       unique: true,
     },

@@ -4,11 +4,11 @@ const createCinemas = () =>
   new Promise(resolve => {
     models.Cinema.bulkCreate([
       {
-        username: 'Helios',
+        name: 'Helios',
         location: '52.396517 16.955526',
       },
       {
-        username: 'Cinema City Plaza',
+        name: 'Cinema City Plaza',
         location: '52.442096 16.918940',
       },
     ])

@@ -1,30 +1,17 @@
-export const useMoviesFetch = () => ({
-  isFetching: false,
-  data: [
-    {
-      genre: "Drama",
-      id: 1,
-      image: "https://sphoto.nasza-klasa.pl/8891700/3/main/f716f0214c.jpeg",
-      rating: 5.4,
-      name: "Olden The Movie",
-      showings: [
-        {
-          dataTime: {
-            date: "2019-08-09 13:00:00.000000"
-          }
-        },
-        {
-          dataTime: {
-            date: "2019-08-09 15:00:00.000000"
-          }
-        },
-        {
-          dataTime: {
-            date: "2019-08-09 20:30:00.000000"
-          }
-        }
-      ]
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+
+const GET_MOVIES_LIST = gql`
+  {
+    movies {
+      id
+      genre
+      posterUrl
+      rating
+      title
+      showingsTime
     }
-  ],
-  error: null
-});
+  }
+`;
+
+export const useMoviesFetch = () => useQuery(GET_MOVIES_LIST);

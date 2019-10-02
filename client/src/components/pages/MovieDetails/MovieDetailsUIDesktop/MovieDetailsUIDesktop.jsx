@@ -86,7 +86,7 @@ MovieDetailsUIDesktop.propTypes = {
               name: string
             }),
             subtitles: bool,
-            dimensionality: oneOf("2D", "3D"),
+            dimensionality: oneOf(["2D", "3D"]),
             dubbing: bool,
             url: string
           })

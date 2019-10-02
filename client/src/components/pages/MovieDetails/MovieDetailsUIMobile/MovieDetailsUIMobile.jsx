@@ -10,9 +10,9 @@ import { StyledContainer } from "./MovieDetailsUIMobile.style";
 const MovieDetailsUIMobile = ({
   isLoading = false,
   movie: {
-    image,
-    banner,
-    name,
+    posterUrl,
+    bannerUrl,
+    title,
     duration,
     description,
     rating,
@@ -24,17 +24,18 @@ const MovieDetailsUIMobile = ({
 }) => (
   <StyledContainer>
     <MovieMobileHeader
-      image={image}
-      title={name}
+      image={posterUrl}
+      title={title}
       description={description}
       duration={duration}
       rating={rating}
       isLoading={isLoading}
     />
     <ShowingsMobileFilters filters={filters} onFilterChange={onFilterChange} />
-    {showings.map(group => (
-      <ShowingMobileGroup key={group.date} group={group} />
-    ))}
+    {showings &&
+      showings.map(group => (
+        <ShowingMobileGroup key={group.date} group={group} />
+      ))}
   </StyledContainer>
 );
 
@@ -42,9 +43,12 @@ MovieDetailsUIMobile.propTypes = {
   movie: shape({
     genre: string,
     id: number,
-    image: string,
-    banner: string,
-    duration: string,
+    posterUrl: string,
+    bannerUrl: string,
+    duration: shape({
+      hours: number,
+      minutes: number
+    }),
     rating: number,
     name: string,
     description: string,
@@ -53,12 +57,8 @@ MovieDetailsUIMobile.propTypes = {
         date: string,
         seances: arrayOf(
           shape({
-            dateTime: shape({
-              date: string
-            }),
-            cinema: shape({
-              name: string
-            }),
+            time: string,
+            cinema: string,
             subtitles: bool,
             dimensionality: oneOf(["2D", "3D"]),
             dubbing: bool,

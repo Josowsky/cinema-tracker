@@ -17,7 +17,7 @@ const MovieShowings = ({ filters = {}, onFiltersChange = noop, groups }) => (
     <ShowingsFilters filters={filters} onChange={onFiltersChange} />
     {groups &&
       groups.map(group => (
-        <StyledShowingsGroup>
+        <StyledShowingsGroup key={group.date}>
           <ShowingGroup group={group} />
         </StyledShowingsGroup>
       ))}
@@ -30,12 +30,8 @@ MovieShowings.propTypes = {
       date: string,
       seances: arrayOf(
         shape({
-          dateTime: shape({
-            date: string
-          }),
-          cinema: shape({
-            name: string
-          }),
+          time: string,
+          cinema: string,
           subtitles: bool,
           dimensionality: oneOf(["2D", "3D"]),
           dubbing: bool,

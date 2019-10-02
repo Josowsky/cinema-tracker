@@ -1,111 +1,43 @@
-export const useMovieFetch = () => ({
-  isFetching: false,
-  data: {
-    genre: "Sci-Fi",
-    id: 1,
-    image:
-      "https://images-na.ssl-images-amazon.com/images/I/71y%2BE9MaURL._SY606_.jpg",
-    banner:
-      "https://cdn.dnaindia.com/sites/default/files/styles/full/public/2018/07/22/707733-jason-momoa-amber-heard-aquaman.jpg",
-    duration: "2 godz. 29 min.",
-    rating: 6.9,
-    name: "Aquaman",
-    description:
-      "Arthur Curry niechętnie stara się przejąć władzę w podwodnym królestwie Atlantydy, żeby zapobiec wojnie z ludźmi żyjącymi na powierzchni.",
-    showings: [
-      {
-        date: "21.08",
-        seances: [
-          {
-            dateTime: {
-              date: "2019-08-21 13:00:00.000000"
-            },
-            cinema: {
-              name: "Helios Poznań"
-            },
-            subtitles: false,
-            dimensionality: "2D",
-            dubbing: true,
-            url: "https://google.com"
-          },
-          {
-            dateTime: {
-              date: "2019-08-21 20:00:00.000000"
-            },
-            cinema: {
-              name: "Helios Poznań"
-            },
-            subtitles: true,
-            dimensionality: "3D",
-            dubbing: false,
-            url: "https://google.com"
-          }
-        ]
-      },
-      {
-        date: "22.08",
-        seances: [
-          {
-            dateTime: {
-              date: "2019-08-21 20:00:00.000000"
-            },
-            cinema: {
-              name: "Helios Poznań"
-            },
-            subtitles: true,
-            dimensionality: "2D",
-            dubbing: false,
-            url: "https://google.com"
-          },
-          {
-            dateTime: {
-              date: "2019-08-21 20:00:00.000000"
-            },
-            cinema: {
-              name: "Helios Poznań"
-            },
-            subtitles: true,
-            dimensionality: "2D",
-            dubbing: false,
-            url: "https://google.com"
-          },
-          {
-            dateTime: {
-              date: "2019-08-21 21:30:00.000000"
-            },
-            cinema: {
-              name: "Helios Poznań"
-            },
-            subtitles: false,
-            dimensionality: "3D",
-            dubbing: true,
-            url: "https://google.com"
-          }
-        ]
-      },
-      {
-        date: "23.08",
-        seances: [
-          {
-            dateTime: {
-              date: "2019-08-21 20:00:00.000000"
-            },
-            cinema: {
-              name: "Helios Poznań"
-            },
-            subtitles: true,
-            dimensionality: "3D",
-            dubbing: false,
-            url: "https://google.com"
-          }
-        ]
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+
+const GET_MOVIE_LIST = gql`
+  query Movie($id: Int!) {
+    movie(id: $id) {
+      genre
+      id
+      posterUrl
+      bannerUrl
+      rating
+      duration {
+        hours
+        minutes
       }
-    ]
-  },
-  error: null
-});
+      title
+      description
+      showings {
+        date
+        seances {
+          time
+          cinema
+          subtitles
+          dimensionality
+          dubbing
+          url
+        }
+      }
+    }
+  }
+`;
+
+export const useMovieFetch = id =>
+  useQuery(GET_MOVIE_LIST, {
+    variables: { id }
+  });
 
 export const useMovieFilters = (movieData, filters) => {
+  if (!(movieData && movieData.showings)) return movieData;
+
   const filteredShowings = movieData.showings.map(showing => {
     const { seances } = showing;
 

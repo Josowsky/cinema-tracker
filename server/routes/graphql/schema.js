@@ -4,7 +4,7 @@ export const schema = buildSchema(`
   type Seance {
     time: String
     cinema: String
-    subtitles: String
+    subtitles: Boolean
     dimensionality: String
     dubbing: Boolean
     url: String

@@ -20,9 +20,9 @@ import {
 const MovieDetailsUIDesktop = ({
   isLoading = false,
   movie: {
-    image,
-    banner,
-    name,
+    posterUrl,
+    bannerUrl,
+    title,
     duration,
     description,
     rating,
@@ -33,16 +33,16 @@ const MovieDetailsUIDesktop = ({
   onFilterChange
 }) => (
   <StyledContainer>
-    <StyledBanner bannerUrl={banner}>
+    <StyledBanner bannerUrl={bannerUrl}>
       <StyledBannerContent>
         {isLoading && <MoviePosterLoader />}
-        {image && <StyledPoster src={image} alt={name} />}
+        {posterUrl && <StyledPoster src={posterUrl} alt={title} />}
         <StyledMovieInfo>
           {isLoading && <MovieShortInfoLoader />}
           {!isLoading && (
             <MovieShortInfo
-              title={name}
-              time={duration}
+              title={title}
+              duration={duration}
               rating={rating}
               genre={genre}
             />
@@ -68,23 +68,22 @@ MovieDetailsUIDesktop.propTypes = {
   movie: shape({
     genre: string,
     id: number,
-    image: string,
-    banner: string,
-    duration: string,
+    posterUrl: string,
+    bannerUrl: string,
+    duration: shape({
+      hours: number,
+      minutes: number
+    }),
     rating: number,
-    name: string,
+    title: string,
     description: string,
     showings: arrayOf(
       shape({
         date: string,
         seances: arrayOf(
           shape({
-            dateTime: shape({
-              date: string
-            }),
-            cinema: shape({
-              name: string
-            }),
+            time: string,
+            cinema: string,
             subtitles: bool,
             dimensionality: oneOf(["2D", "3D"]),
             dubbing: bool,

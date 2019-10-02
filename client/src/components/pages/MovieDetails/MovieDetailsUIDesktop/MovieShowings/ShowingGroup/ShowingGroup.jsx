@@ -3,7 +3,6 @@ import { arrayOf, bool, string, shape, oneOf } from "prop-types";
 
 import { ShowingType } from "./ShowingType/ShowingType";
 import { ShowingDimension } from "./ShowingDimension/ShowingDimension";
-import { getShowingTime } from "../../../../../../shared/utils/getShowingTime";
 
 import {
   StyledTitle,
@@ -24,17 +23,11 @@ const ShowingGroup = ({ group: { date, seances = [] } } = {}) => {
       <StyledTitle>{date}</StyledTitle>
       <StyledShowingsContainer>
         {seances.map(
-          ({
-            dateTime: { date: showingDate },
-            cinema: { name: cinemaName },
-            subtitles,
-            dimensionality,
-            url
-          }) => (
-            <StyledShowing>
+          ({ time, cinema, subtitles, dimensionality, url }, index) => (
+            <StyledShowing key={`${time}_${index}`}>
               <StyledShowingRow>
-                <StyledTime>{getShowingTime(showingDate)}</StyledTime>
-                <StyledCinemaName>{cinemaName}</StyledCinemaName>
+                <StyledTime>{time}</StyledTime>
+                <StyledCinemaName>{cinema}</StyledCinemaName>
               </StyledShowingRow>
               <StyledShowingRow>
                 <StyledDimensionContainer>
@@ -58,12 +51,8 @@ ShowingGroup.propTypes = {
     date: string,
     seances: arrayOf(
       shape({
-        dateTime: shape({
-          date: string
-        }),
-        cinema: shape({
-          name: string
-        }),
+        time: string,
+        cinema: string,
         subtitles: bool,
         dimensionality: oneOf(["2D", "3D"]),
         dubbing: bool,

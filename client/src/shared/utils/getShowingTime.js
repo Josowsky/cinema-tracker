@@ -1,3 +1,4 @@
+// TODO: Verify if this is still needed
 export const getShowingTime = dateTime => {
   const date = new Date(dateTime);
 

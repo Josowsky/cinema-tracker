@@ -8,7 +8,7 @@
   <img src="https://hashnode.imgix.net/res/hashnode/image/upload/jbhiqodxlyhaqogfuqwy/1486104606.png?w=180&h=180&fit=crop&crop=entropy&auto=format,enhance&q=60" width="50" alt="StyledComponents" />
 </div>
 
-#### The ultimate movie showtimes search app 
+#### The ultimate movie showtimes search app
 
 ## Inspiration
 
@@ -30,15 +30,49 @@ The SPA is created using  React with TypeScript and it's connected to the GraphQ
 - GraphQL
 - PostgreSQL
 
-## Building the project
+## Project setup
+You need to install postgreSQL locally and create an empty database
 
-To start the local server:
+#### 1. Create `.env` file and add credentials for your database
+```sh
+cd server
+cp .env_example .env
+nano .env
+```
+
+#### 2. Install dependencies
+```sh
+cd server
+yarn install
+cd ../client
+yarn install
+```
+
+#### 3. Seed the database
+```sh
+cd server
+yarn db:reset
+```
+
+## Running the project
+
+### To start the app locally:
 
 ```sh
+cd server
 yarn start
 ```
 
-To create a production build:
+and
+
+```sh
+cd client
+yarn start
+```
+
+**App will run at localhost:300**
+
+### To create a production build:
 
 ```sh
 yarn build

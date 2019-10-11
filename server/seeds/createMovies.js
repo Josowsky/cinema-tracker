@@ -17,7 +17,7 @@ const createMovies = () =>
         genre: 'Thriller',
         description: 'Some description for the Prisoners',
         poster:
-          'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwix8L-GttbkAhWDlIsKHdfcCn0QjRx6BAgBEAQ&url=https%3A%2F%2Fwww.amazon.com%2FPrisoners-Poster-27-40-102cm%2Fdp%2FB00KAL2JYE&psig=AOvVaw3X4gh5yktVXuHO7DGqVZgP&ust=1568760374291457',
+          'https://ssl-gfx.filmweb.pl/po/71/69/507169/7568460.6.jpg',
         rating: 7.9,
         duration: 153,
       },

@@ -7,12 +7,13 @@ import { useMoviesFetch } from "./MovieList.hooks";
 import { StyledContainer, StyledLoadingContainer } from "./MoviesList.style";
 
 const MoviesList = () => {
-  const moviesData = useMoviesFetch();
+  // TODO: handle error
+  const { loading: isLoadingMovies, data } = useMoviesFetch();
 
-  const isLoadingMovies = moviesData.isFetching;
-  const movies = moviesData.data;
+  const { movies } = data || {};
 
   if (isLoadingMovies)
+    // TODO: Add proper loading state
     return (
       <StyledLoadingContainer>
         {/* <InlineLoading /> */}Loading

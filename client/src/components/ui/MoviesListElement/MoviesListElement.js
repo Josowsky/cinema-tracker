@@ -16,7 +16,7 @@ import {
 } from "./MoviesListElement.styles";
 
 const MoviesListElement = ({ movie = {} }) => {
-  const { genre, id, image: posterUrl, rating, name: title, showings } = movie;
+  const { genre, id, posterUrl, rating, title, showingsTime } = movie;
 
   return (
     <StyledContainer>
@@ -26,20 +26,11 @@ const MoviesListElement = ({ movie = {} }) => {
           <StyledDescription>
             <StyledTitle>{title}</StyledTitle>
             <StyledShowingSection>
-              {showings.map((showing, index) => {
-                if (index > 3) return null;
-
-                const showingDateTime = new Date(showing.dataTime.date);
-
-                return (
-                  <StyledShowingsContainer key={index}>
-                    {showingDateTime.toLocaleTimeString("pl", {
-                      hour: "2-digit",
-                      minute: "2-digit"
-                    })}
-                  </StyledShowingsContainer>
-                );
-              })}
+              {showingsTime.map(showing => (
+                <StyledShowingsContainer key={showing}>
+                  {showing}
+                </StyledShowingsContainer>
+              ))}
             </StyledShowingSection>
             <StyledGenre>{genre}</StyledGenre>
             <StyledBottomContainer>

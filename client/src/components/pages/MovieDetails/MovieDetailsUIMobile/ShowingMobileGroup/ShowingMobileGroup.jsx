@@ -8,8 +8,6 @@ import {
   FaRegClock
 } from "react-icons/fa";
 
-import { getShowingTime } from "../../../../../shared/utils/getShowingTime";
-
 import {
   StyledTitle,
   StyledTitleLine,
@@ -34,14 +32,8 @@ const ShowingMobileGroup = ({ group: { date, seances = [] } } = {}) => {
       </StyledTitle>
       <div>
         {seances.map(
-          ({
-            dateTime: { date: showingDate },
-            cinema: { name: cinemaName },
-            subtitles,
-            dimensionality,
-            url
-          }) => (
-            <StyledShowing>
+          ({ time, cinema, subtitles, dimensionality, url }, index) => (
+            <StyledShowing key={`${time}_${index}`}>
               <StyledRow>
                 <StyledTicketLink href={url} target="__blank">
                   Kup bilet
@@ -56,9 +48,9 @@ const ShowingMobileGroup = ({ group: { date, seances = [] } } = {}) => {
                 </StyledType>
               </StyledRow>
               <StyledRow>
-                <StyledCinema>{cinemaName}</StyledCinema>
+                <StyledCinema>{time}</StyledCinema>
                 <StyledTime>
-                  <FaRegClock /> {getShowingTime(showingDate)}
+                  <FaRegClock /> {cinema}
                 </StyledTime>
               </StyledRow>
             </StyledShowing>
@@ -74,14 +66,10 @@ ShowingMobileGroup.propTypes = {
     date: string,
     seances: arrayOf(
       shape({
-        dateTime: shape({
-          date: string
-        }),
-        cinema: shape({
-          name: string
-        }),
+        time: string,
+        cinema: string,
         subtitles: bool,
-        dimensionality: oneOf("2D", "3D"),
+        dimensionality: oneOf(["2D", "3D"]),
         dubbing: bool,
         url: string
       })

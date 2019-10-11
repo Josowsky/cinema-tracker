@@ -1,5 +1,5 @@
 import React from "react";
-import { bool, string, number } from "prop-types";
+import { bool, string, number, shape } from "prop-types";
 
 import { MobilePosterLoader } from "./MobilePosterLoader/MobilePosterLoader";
 import { MobileInfoLoader } from "./MobileInfoLoader/MobileInfoLoader";
@@ -22,7 +22,7 @@ const MovieMobileHeader = ({
   image,
   title,
   description,
-  duration,
+  duration: { hours, minutes } = {},
   rating,
   isLoading
 }) => (
@@ -34,10 +34,10 @@ const MovieMobileHeader = ({
       {!isLoading && (
         <StyledInfoContainer>
           <StyledTitle>{title}</StyledTitle>
-          {duration && (
+          {hours && minutes && (
             <StyledDuration>
               <StyledDurationIcon />
-              {duration}
+              {`${hours} godz. ${minutes} min.`}
             </StyledDuration>
           )}
           <StyledDescription>{description}</StyledDescription>
@@ -61,7 +61,10 @@ MovieMobileHeader.propTypes = {
   image: string,
   title: string,
   description: string,
-  duration: string,
+  duration: shape({
+    hours: number,
+    minutes: number
+  }),
   rating: number,
   isLoading: bool
 };

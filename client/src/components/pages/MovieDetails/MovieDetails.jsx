@@ -11,13 +11,12 @@ import { MovieDetailsUIDesktop } from "./MovieDetailsUIDesktop/MovieDetailsUIDes
 import { MovieDetailsUIMobile } from "./MovieDetailsUIMobile/MovieDetailsUIMobile";
 
 const MovieDetails = ({ match }) => {
-  const movieId = get(match, "params.id", null);
+  const movieId = parseInt(get(match, "params.id", null));
   const [filters, setFilters] = useState(DEFAULT_SHOWINGS_FILTERS);
 
-  const movieData = useMovieFetch(movieId);
+  const { loading: isLoadingMovie, data } = useMovieFetch(movieId);
 
-  const isLoadingMovie = movieData.isFetching;
-  const movie = movieData.data;
+  const { movie = {} } = data || {};
 
   const filteredMovie = useMovieFilters(movie, filters);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { string, number } from "prop-types";
+import { string, number, shape } from "prop-types";
 
 import {
   StyledContainer,
@@ -11,12 +11,17 @@ import {
   StyledGenre
 } from "./MovieShortInfo.style";
 
-const MovieShortInfo = ({ title, time, rating, genre }) => (
+const MovieShortInfo = ({
+  title,
+  duration: { hours, minutes } = {},
+  rating,
+  genre
+}) => (
   <StyledContainer>
     <StyledTitle>{title}</StyledTitle>
-    {time && (
+    {hours && minutes && (
       <StyledTime>
-        <StyledTimeIcon /> {time}
+        <StyledTimeIcon /> {`${hours} godz. ${minutes} min.`}
       </StyledTime>
     )}
     {rating && (
@@ -31,7 +36,10 @@ const MovieShortInfo = ({ title, time, rating, genre }) => (
 
 MovieShortInfo.propTypes = {
   title: string.isRequired,
-  time: string.isRequired,
+  duration: shape({
+    hours: number,
+    minutes: number
+  }).isRequired,
   rating: number.isRequired,
   genre: string.isRequired
 };

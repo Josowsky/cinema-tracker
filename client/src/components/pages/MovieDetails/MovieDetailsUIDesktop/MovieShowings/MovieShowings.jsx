@@ -1,6 +1,5 @@
 import React from "react";
 import { arrayOf, func, bool, string, shape, oneOf } from "prop-types";
-import noop from "lodash.noop";
 
 import { ShowingGroup } from "./ShowingGroup/ShowingGroup";
 import { ShowingsFilters } from "./ShowingsFilters/ShowingsFilters";
@@ -11,7 +10,11 @@ import {
   StyledShowingsGroup
 } from "./MovieShowings.style";
 
-const MovieShowings = ({ filters = {}, onFiltersChange = noop, groups }) => (
+const MovieShowings = ({
+  filters = {},
+  onFiltersChange = () => null,
+  groups
+}) => (
   <StyledContainer>
     <StyledTitle>Sense</StyledTitle>
     <ShowingsFilters filters={filters} onChange={onFiltersChange} />

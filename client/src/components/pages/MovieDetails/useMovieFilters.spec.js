@@ -1,4 +1,4 @@
-import { useMovieFilters } from "./MovieDetails.hooks";
+import { useMovieFilters } from "./useMovieFilters";
 
 const movieData = {
   id: 1,

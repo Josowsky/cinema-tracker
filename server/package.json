@@ -1,12 +1,12 @@
 {
-  "name": "gdzie-kino",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
     "eslint": "eslint",
-    "db:reset": "node ./node_modules/@babel/node/bin/babel-node.js seeds/index.js"
+    "db:reset": "node ../node_modules/@babel/node/bin/babel-node.js seeds/index.js"
   },
   "keywords": [],
   "author": "",

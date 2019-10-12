@@ -42,16 +42,12 @@ nano .env
 
 #### 2. Install dependencies
 ```sh
-cd server
-yarn install
-cd ../client
 yarn install
 ```
 
 #### 3. Seed the database
 ```sh
-cd server
-yarn db:reset
+yarn workspace server db:reset
 ```
 
 ## Running the project
@@ -59,15 +55,11 @@ yarn db:reset
 ### To start the app locally:
 
 ```sh
-cd server
-yarn start
-```
+# Start server in one terminal tab
+yarn workspace server start
 
-and
-
-```sh
-cd client
-yarn start
+# Start client in second terminal tab
+yarn workspace client start
 ```
 
 **App will run at localhost:300**
@@ -75,7 +67,7 @@ yarn start
 ### To create a production build:
 
 ```sh
-yarn build
+yarn workspace client build
 ```
 
 ## References

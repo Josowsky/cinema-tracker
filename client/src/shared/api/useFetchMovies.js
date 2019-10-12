@@ -14,4 +14,4 @@ const GET_MOVIES_LIST = gql`
   }
 `;
 
-export const useMoviesFetch = () => useQuery(GET_MOVIES_LIST);
+export const useFetchMovies = () => useQuery(GET_MOVIES_LIST);

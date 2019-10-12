@@ -2,13 +2,13 @@ import React from "react";
 
 import { MoviesListElement } from "../../ui/MoviesListElement/MoviesListElement";
 import { NoResults } from "../../ui/NoResults/NoResults";
-import { useMoviesFetch } from "./MovieList.hooks";
+import { useFetchMovies } from "../../../shared/api/useFetchMovies";
 
 import { StyledContainer, StyledLoadingContainer } from "./MoviesList.style";
 
 const MoviesList = () => {
   // TODO: handle error
-  const { loading: isLoadingMovies, data } = useMoviesFetch();
+  const { loading: isLoadingMovies, data } = useFetchMovies();
 
   const { movies } = data || {};
 

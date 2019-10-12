@@ -3,7 +3,8 @@ import { object } from "prop-types";
 import { withRouter } from "react-router-dom";
 import get from "lodash.get";
 
-import { useMovieFetch, useMovieFilters } from "./MovieDetails.hooks";
+import { useFetchMovie } from "../../../shared/api/useFetchMovie";
+import { useMovieFilters } from "./useMovieFilters";
 import { DEFAULT_SHOWINGS_FILTERS } from "./MovieDetails.constants";
 import { ViewportContext } from "../../context/ViewportContext/ViewportContext";
 
@@ -14,7 +15,7 @@ const MovieDetails = ({ match }) => {
   const movieId = parseInt(get(match, "params.id", null));
   const [filters, setFilters] = useState(DEFAULT_SHOWINGS_FILTERS);
 
-  const { loading: isLoadingMovie, data } = useMovieFetch(movieId);
+  const { loading: isLoadingMovie, data } = useFetchMovie(movieId);
 
   const { movie = {} } = data || {};
 

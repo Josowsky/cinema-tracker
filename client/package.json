@@ -6,7 +6,6 @@
     "@apollo/react-hooks": "^3.1.1",
     "apollo-boost": "^0.4.4",
     "graphql": "^14.5.8",
-    "lodash.get": "^4.4.2",
     "lodash.noop": "^3.0.1",
     "lodash.throttle": "^4.1.1",
     "react": "^16.8.6",

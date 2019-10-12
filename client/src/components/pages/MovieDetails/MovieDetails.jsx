@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { object } from "prop-types";
 import { withRouter } from "react-router-dom";
-import get from "lodash.get";
 
 import { useFetchMovie } from "../../../shared/api/useFetchMovie";
 import { useMovieFilters } from "./useMovieFilters";
@@ -11,8 +10,8 @@ import { ViewportContext } from "../../context/ViewportContext/ViewportContext";
 import { MovieDetailsUIDesktop } from "./MovieDetailsUIDesktop/MovieDetailsUIDesktop";
 import { MovieDetailsUIMobile } from "./MovieDetailsUIMobile/MovieDetailsUIMobile";
 
-const MovieDetails = ({ match }) => {
-  const movieId = parseInt(get(match, "params.id", null));
+const MovieDetails = ({ match: { params } = {} }) => {
+  const movieId = parseInt((params && params.id) || null);
   const [filters, setFilters] = useState(DEFAULT_SHOWINGS_FILTERS);
 
   const { loading: isLoadingMovie, data } = useFetchMovie(movieId);

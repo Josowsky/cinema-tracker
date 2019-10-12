@@ -31,13 +31,12 @@ The SPA is created using  React with TypeScript and it's connected to the GraphQ
 - PostgreSQL
 
 ## Project setup
-You need to install postgreSQL locally and create an empty database
+> You need to install postgreSQL locally and create an empty database before the following steps.
 
 #### 1. Create `.env` file and add credentials for your database
 ```sh
-cd server
-cp .env_example .env
-nano .env
+cp server/.env_example server/.env
+nano server/.env
 ```
 
 #### 2. Install dependencies
@@ -62,7 +61,7 @@ yarn workspace server start
 yarn workspace client start
 ```
 
-**App will run at localhost:300**
+**App will run at localhost:3000**
 
 ### To create a production build:
 

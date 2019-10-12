@@ -43,5 +43,9 @@
       "react-app"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.1.2",
+    "@testing-library/react": "^9.3.0"
+  }
 }

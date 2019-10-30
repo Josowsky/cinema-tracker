@@ -1,0 +1,10 @@
+{
+  "extends": ["eslint-config-airbnb-base", "prettier"],
+  "plugins": ["eslint-plugin-import", "prettier"],
+  "rules": {
+    "import/prefer-default-export": 0,
+    "consistent-return": 0,
+    "prettier/prettier": ["error"]
+  },
+  "env": {}
+}

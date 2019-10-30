@@ -1,0 +1,38 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node app.js",
+    "eslint": "eslint",
+    "db:reset": "node ../node_modules/@babel/node/bin/babel-node.js seeds/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "errorhandler": "^1.5.1",
+    "express": "^4.16.3",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.5",
+    "lodash.sample": "^4.2.1",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.12.1",
+    "sequelize": "^5.19.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/preset-env": "^7.6.0",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2"
+  }
+}

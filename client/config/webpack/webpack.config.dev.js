@@ -1,29 +1,25 @@
-const webpack = require("webpack");
-const merge = require("webpack-merge");
+const webpack = require('webpack');
+const merge = require('webpack-merge');
 
-const baseConfig = require("./webpack.config.base");
+const baseConfig = require('./webpack.config.base');
 
 module.exports = merge(baseConfig.config, {
-  mode: "development",
-  devtool: "cheap-module-eval-source-map",
-  entry: [
-    "webpack-dev-server/client?http://localhost:3000",
-    "webpack/hot/dev-server",
-    baseConfig.indexFile
-  ],
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
+  entry: ['webpack-dev-server/client?http://localhost:3000', 'webpack/hot/dev-server', baseConfig.indexFile],
   devServer: {
-    host: "localhost",
+    host: 'localhost',
     port: 3000,
     hot: true,
     headers: {
-      "Access-Control-Allow-Origin": "*"
+      'Access-Control-Allow-Origin': '*',
     },
     watchOptions: {
-      ignored: ["node_modules"]
+      ignored: ['node_modules'],
     },
     proxy: {
-      "/graphql": "http://localhost:5000"
-    }
+      '/graphql': 'http://localhost:5000',
+    },
   },
   module: {
     rules: [
@@ -32,14 +28,14 @@ module.exports = merge(baseConfig.config, {
         include: [baseConfig.reactPath],
         use: [
           {
-            loader: "babel-loader",
+            loader: ['babel-loader', 'eslint-loader'],
             options: {
-              cacheDirectory: true
-            }
-          }
-        ]
-      }
-    ]
+              cacheDirectory: true,
+            },
+          },
+        ],
+      },
+    ],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 });

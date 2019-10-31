@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { accentColor2 } from "../../../shared/constants/constants.style";
+import { accentColor2 } from '../../../shared/constants/constants.style';
 
 export const StyledContainer = styled.div`
   display: flex;

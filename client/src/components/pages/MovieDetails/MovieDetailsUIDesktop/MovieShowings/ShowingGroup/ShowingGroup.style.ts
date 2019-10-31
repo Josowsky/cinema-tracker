@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { accentColor1 } from "../../../../../../shared/constants/constants.style";
+import { accentColor1 } from 'shared/constants/constants.style';
 
 export const StyledTitle = styled.h3`
   margin-bottom: 24px;

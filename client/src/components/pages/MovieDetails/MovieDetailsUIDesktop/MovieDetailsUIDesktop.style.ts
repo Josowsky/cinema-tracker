@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import defaultBanner from "./banner.jpg";
+import styled from 'styled-components';
+
+const defaultBanner = require('images/defaultBanner.jpg');
 
 export const StyledContainer = styled.div`
   background: white;
@@ -7,7 +8,11 @@ export const StyledContainer = styled.div`
   position: relative;
 `;
 
-export const StyledBanner = styled.div`
+interface StyledBannerProps {
+  bannerUrl?: string;
+}
+
+export const StyledBanner = styled.div<StyledBannerProps>`
   position: relative;
   width: 100%;
   height: 380px;
@@ -15,7 +20,7 @@ export const StyledBanner = styled.div`
   padding: 0 32px;
   background: ${({ bannerUrl }) =>
       bannerUrl
-        ? "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))"
+        ? 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))'
         : `linear-gradient(rgba(56, 216, 213, 0.7), rgba(56, 216, 213, 0.7))`},
     url(${({ bannerUrl }) => (bannerUrl ? bannerUrl : defaultBanner)});
   background-size: cover;

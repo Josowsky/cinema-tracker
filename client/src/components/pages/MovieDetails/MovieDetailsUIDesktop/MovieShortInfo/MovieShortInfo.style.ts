@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { FaClock, FaStar } from "react-icons/fa";
+import styled from 'styled-components';
+import { FaClock, FaStar } from 'react-icons/fa';
 
-import { accentColor3 } from "../../../../../shared/constants/constants.style";
+import { accentColor3 } from 'shared/constants/constants.style';
 
 export const StyledContainer = styled.section`
   color: white;

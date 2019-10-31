@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { FaComments, FaFileAlt } from "react-icons/fa";
+import styled from 'styled-components';
+import { FaComments, FaFileAlt } from 'react-icons/fa';
 
 export const StyledContainer = styled.div`
   display: flex;

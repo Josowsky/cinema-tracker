@@ -1,14 +1,8 @@
-import React from "react";
-import ContentLoader from "react-content-loader";
+import React from 'react';
+import ContentLoader from 'react-content-loader';
 
 const MovieDetailsContentLoader = () => (
-  <ContentLoader
-    height={250}
-    width={600}
-    speed={2}
-    primaryColor="#f3f3f3"
-    secondaryColor="#ecebeb"
-  >
+  <ContentLoader height={250} width={600} speed={2} primaryColor="#f3f3f3" secondaryColor="#ecebeb">
     <rect x="8" y="15" rx="4" ry="4" width="117" height="6" />
     <rect x="8" y="37" rx="3" ry="3" width="85" height="6" />
     <rect x="8" y="80" rx="3" ry="3" width="350" height="6" />

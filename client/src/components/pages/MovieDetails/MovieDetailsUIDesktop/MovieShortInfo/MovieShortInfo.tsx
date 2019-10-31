@@ -1,5 +1,6 @@
-import React from "react";
-import { string, number, shape } from "prop-types";
+import React, { FunctionComponent } from 'react';
+
+import { Movie } from 'shared/models';
 
 import {
   StyledContainer,
@@ -8,14 +9,16 @@ import {
   StyledTime,
   StyledRatingIcon,
   StyledRating,
-  StyledGenre
-} from "./MovieShortInfo.style";
+  StyledGenre,
+} from './MovieShortInfo.style';
 
-const MovieShortInfo = ({
+type MovieShortInfoProps = Pick<Movie, 'title' | 'duration' | 'rating' | 'genre'>;
+
+const MovieShortInfo: FunctionComponent<MovieShortInfoProps> = ({
   title,
-  duration: { hours, minutes } = {},
+  duration: { hours, minutes },
   rating,
-  genre
+  genre,
 }) => (
   <StyledContainer>
     <StyledTitle>{title}</StyledTitle>
@@ -30,18 +33,11 @@ const MovieShortInfo = ({
         {rating}
       </StyledRating>
     )}
-    <StyledGenre>Gatunek: {genre}</StyledGenre>
+    <StyledGenre>
+      Gatunek:
+      {genre}
+    </StyledGenre>
   </StyledContainer>
 );
-
-MovieShortInfo.propTypes = {
-  title: string.isRequired,
-  duration: shape({
-    hours: number,
-    minutes: number
-  }).isRequired,
-  rating: number.isRequired,
-  genre: string.isRequired
-};
 
 export { MovieShortInfo };

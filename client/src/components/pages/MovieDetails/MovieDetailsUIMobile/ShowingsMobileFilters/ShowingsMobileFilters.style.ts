@@ -1,10 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import {
-  grid,
-  grey,
-  accentColor2
-} from "../../../../../shared/constants/constants.style";
+import { grid, grey, accentColor2 } from 'shared/constants/constants.style';
 
 export const StyledContainer = styled.section`
   margin: ${grid}px 0 ${grid * 2}px;
@@ -18,16 +14,19 @@ export const StyledSwitchContainer = styled.div`
   display: flex;
 `;
 
+interface StyledOptionProps {
+  isSelected: boolean;
+}
+
 export const StyledOption = styled.div.attrs(() => ({
-  tabIndex: 1
-}))`
+  tabIndex: 1,
+}))<StyledOptionProps>`
   flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: ${grid / 2}px 0;
-  border-bottom: 4px solid
-    ${({ isSelected }) => (isSelected ? accentColor2 : "transparent")};
+  border-bottom: 4px solid ${({ isSelected }) => (isSelected ? accentColor2 : 'transparent')};
 
   svg {
     margin-right: ${grid / 2}px;

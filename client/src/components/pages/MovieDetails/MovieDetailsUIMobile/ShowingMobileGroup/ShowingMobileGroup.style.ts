@@ -1,10 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import {
-  grid,
-  grey,
-  accentColor1
-} from "../../../../../shared/constants/constants.style";
+import { grid, grey, accentColor1 } from 'shared/constants/constants.style';
 
 export const StyledTitle = styled.div`
   width: 100%;

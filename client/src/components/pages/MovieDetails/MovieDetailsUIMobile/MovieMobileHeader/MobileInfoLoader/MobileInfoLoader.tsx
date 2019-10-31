@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import ContentLoader from "react-content-loader";
+import React, { FunctionComponent } from 'react';
+import styled from 'styled-components';
+import ContentLoader from 'react-content-loader';
 
-import { grid } from "../../../../../../shared/constants/constants.style";
+import { grid } from 'shared/constants/constants.style';
 
 const StyledContainer = styled.div`
   width: 150px;
@@ -10,15 +10,9 @@ const StyledContainer = styled.div`
   margin-left: ${grid}px;
 `;
 
-const MobileInfoLoader = () => (
+const MobileInfoLoader: FunctionComponent = () => (
   <StyledContainer>
-    <ContentLoader
-      height={240}
-      width={150}
-      speed={2}
-      primaryColor="#dedede"
-      secondaryColor="#ccc"
-    >
+    <ContentLoader height={240} width={150} speed={2} primaryColor="#dedede" secondaryColor="#ccc">
       <rect x="0" y="0" rx="3" ry="3" width="140" height="12" />
       <rect x="0" y="24" rx="3" ry="3" width="90" height="8" />
       <rect x="0" y="60" rx="3" ry="3" width="150" height="6" />

@@ -1,11 +1,7 @@
-import styled from "styled-components";
-import { FaRegClock, FaStar } from "react-icons/fa";
+import styled from 'styled-components';
+import { FaRegClock, FaStar } from 'react-icons/fa';
 
-import {
-  grid,
-  grey,
-  accentColor3
-} from "../../../../../shared/constants/constants.style";
+import { grid, grey, accentColor3 } from 'shared/constants/constants.style';
 
 export const StyledContainer = styled.section`
   color: ${grey};

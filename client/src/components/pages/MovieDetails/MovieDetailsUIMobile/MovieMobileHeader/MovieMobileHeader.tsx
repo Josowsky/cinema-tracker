@@ -1,8 +1,9 @@
-import React from "react";
-import { bool, string, number, shape } from "prop-types";
+import React, { FunctionComponent } from 'react';
 
-import { MobilePosterLoader } from "./MobilePosterLoader/MobilePosterLoader";
-import { MobileInfoLoader } from "./MobileInfoLoader/MobileInfoLoader";
+import { Movie } from 'shared/models';
+
+import { MobilePosterLoader } from './MobilePosterLoader/MobilePosterLoader';
+import { MobileInfoLoader } from './MobileInfoLoader/MobileInfoLoader';
 
 import {
   StyledContainer,
@@ -15,21 +16,25 @@ import {
   StyledDuration,
   StyledRatingContainer,
   StyledRating,
-  StyledRatingIcon
-} from "./MovieMobileHeader.style";
+  StyledRatingIcon,
+} from './MovieMobileHeader.style';
 
-const MovieMobileHeader = ({
-  image,
+type MovieMobileHeaderProps = Pick<Movie, 'title' | 'description' | 'posterUrl' | 'duration' | 'rating'> & {
+  isLoading: boolean;
+};
+
+const MovieMobileHeader: FunctionComponent<MovieMobileHeaderProps> = ({
+  posterUrl,
   title,
   description,
   duration: { hours, minutes } = {},
   rating,
-  isLoading
+  isLoading,
 }) => (
   <StyledContainer>
     <StyledTopContainer>
       {isLoading && <MobilePosterLoader />}
-      {!isLoading && <StyledPoster src={image} alt={title} />}
+      {!isLoading && <StyledPoster src={posterUrl} alt={title} />}
       {isLoading && <MobileInfoLoader />}
       {!isLoading && (
         <StyledInfoContainer>
@@ -56,17 +61,5 @@ const MovieMobileHeader = ({
     )}
   </StyledContainer>
 );
-
-MovieMobileHeader.propTypes = {
-  image: string,
-  title: string,
-  description: string,
-  duration: shape({
-    hours: number,
-    minutes: number
-  }),
-  rating: number,
-  isLoading: bool
-};
 
 export { MovieMobileHeader };

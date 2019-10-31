@@ -1,5 +1,11 @@
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+
+import { Movie } from 'shared/models/movie';
+
+interface MovieData {
+  movie: Movie;
+}
 
 const GET_MOVIE = gql`
   query Movie($id: Int!) {
@@ -30,7 +36,7 @@ const GET_MOVIE = gql`
   }
 `;
 
-export const useFetchMovie = id =>
-  useQuery(GET_MOVIE, {
-    variables: { id }
+export const useFetchMovie = (id: number) =>
+  useQuery<MovieData>(GET_MOVIE, {
+    variables: { id },
   });

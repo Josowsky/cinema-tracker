@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from 'styled-components';
 
-import { accentColor4 } from "./shared/constants/constants.style";
+import { accentColor4 } from './shared/constants/constants.style';
 
 export const GlobalStyles = createGlobalStyle`
   html,

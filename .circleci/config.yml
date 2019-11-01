@@ -23,3 +23,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: yarn workspace client test
+
+      - run: yarn workspace client lint

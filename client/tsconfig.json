@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "preserve",
+    "noEmit": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "esModuleInterop": true,
+  },
+  "include": ["src"]
+}

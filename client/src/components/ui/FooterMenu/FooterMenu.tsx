@@ -1,37 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
-import { FaHome, FaInfoCircle, FaUser } from "react-icons/fa";
+import React, { FunctionComponent } from 'react';
+import { withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
+import { FaHome, FaInfoCircle, FaUser } from 'react-icons/fa';
 
-import { routes } from "../../../shared/constants/constants.routes";
-import { arePathsEqual } from "../../../shared/utils/arePathsEqual";
+import { routes } from 'shared/constants/constants.routes';
+import { arePathsEqual } from 'shared/utils/arePathsEqual';
 
-import {
-  StyledContainer,
-  StyledMenuElement,
-  StyledIcon,
-  StyledTitle
-} from "./FooterMenu.style";
+import { StyledContainer, StyledMenuElement, StyledIcon, StyledTitle } from './FooterMenu.style';
 
 const MENU_ELEMENTS = [
   {
     route: routes.home,
     icon: FaHome,
-    title: "Filmy"
+    title: 'Filmy',
   },
   {
-    route: routes.credits,
+    route: '/credits',
     icon: FaUser,
-    title: "Autorzy"
+    title: 'Autorzy',
   },
   {
-    route: routes.about,
+    route: '/about',
     icon: FaInfoCircle,
-    title: "O aplikacji"
-  }
+    title: 'O aplikacji',
+  },
 ];
 
-const FooterMenu = ({ location: { pathname } }) => (
+const FooterMenu: FunctionComponent<RouteComponentProps> = ({ location: { pathname } }) => (
   <StyledContainer>
     {MENU_ELEMENTS.map(({ route, icon: Icon, title }) => {
       const isSelected = arePathsEqual(route, pathname);
@@ -47,10 +42,6 @@ const FooterMenu = ({ location: { pathname } }) => (
     })}
   </StyledContainer>
 );
-
-FooterMenu.propTypes = {
-  location: PropTypes.object.isRequired
-};
 
 const FooterMenuHOC = withRouter(FooterMenu);
 

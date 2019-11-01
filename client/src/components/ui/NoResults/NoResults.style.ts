@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { grey } from "../../../shared/constants/constants.style";
+import { grey } from 'shared/constants/constants.style';
 
 export const StyledContainer = styled.h2`
   text-align: center;

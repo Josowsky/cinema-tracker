@@ -27,7 +27,7 @@ interface MoviesListElementProps {
   movie: Movie;
 }
 
-const MoviesListElement: FunctionComponent<MoviesListElementProps> = ({ movie = {} }) => {
+const MoviesListElement: FunctionComponent<MoviesListElementProps> = ({ movie }) => {
   const { genre, id, posterUrl, rating, title, showingsTime } = movie;
 
   return (

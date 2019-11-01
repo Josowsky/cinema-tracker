@@ -8,7 +8,7 @@ import { StyledContainer, StyledHeader, StyledFiltersContainer, StyledFilterCont
 interface ShowingsFiltersProps {
   filters: ShowingsFiltersType;
   onChange: (
-    filterName: 'screenType' | 'dialoguesType',
+    filterName: string,
     filterValue: ShowingsFiltersType['screenType'] | ShowingsFiltersType['dialoguesType'],
   ) => void;
 }
@@ -18,7 +18,7 @@ const ShowingsFilters: FunctionComponent<ShowingsFiltersProps> = ({ filters, onC
     <StyledHeader id="filtersHeader">Rodzaj seansu</StyledHeader>
     <StyledFiltersContainer>
       <StyledFilterContainer>
-        <Switch
+        <Switch<ShowingsFiltersType['dialoguesType']>
           name="dialoguesType"
           value={filters.dialoguesType}
           options={[{ value: 'subtitles', label: 'Napisy' }, { value: 'dubbing', label: 'Dubbing' }]}
@@ -26,7 +26,7 @@ const ShowingsFilters: FunctionComponent<ShowingsFiltersProps> = ({ filters, onC
         />
       </StyledFilterContainer>
       <StyledFilterContainer>
-        <Switch
+        <Switch<ShowingsFiltersType['screenType']>
           name="screenType"
           value={filters.screenType}
           options={[{ value: '2D', label: '2D' }, { value: '3D', label: '3D' }]}

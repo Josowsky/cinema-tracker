@@ -1,11 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import {
-  accentColor2,
-  accentColor5,
-  grey
-} from "../../../shared/constants/constants.style";
-import { media } from "../../../shared/utils/styledComponents";
+import { accentColor2, accentColor5, grey } from 'shared/constants/constants.style';
+import { media } from 'shared/utils/styledComponents';
 
 export const StyledContainer = styled.div`
   ${media.lgUp`
@@ -29,7 +25,11 @@ export const StyledElementContainer = styled.div`
   `}
 `;
 
-export const StyledPoster = styled.div`
+interface StyledPosterProps {
+  posterUrl: string;
+}
+
+export const StyledPoster = styled.div<StyledPosterProps>`
   width: 9.2rem;
   height: 12.5rem;
   background-size: cover;

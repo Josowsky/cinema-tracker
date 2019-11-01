@@ -54,9 +54,9 @@
   "scripts": {
     "start": "webpack-dev-server --config config/webpack/webpack.config.dev.js",
     "build": "webpack --config config/webpack/webpack.config.prod.js",
-    "lint": "tsc --noEmit && eslint '*/**/*.{js,jsx,ts,tsx}' --quiet --fix",
+    "lint": "tsc --noEmit && eslint 'src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
     "tslint": "tsc --noEmit",
-    "eslint": "eslint '*/**/*.{js,jsx,ts,tsx}' --quiet --fix"
+    "eslint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --quiet --fix"
   },
   "browserslist": {
     "production": [
@@ -91,7 +91,7 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
+      "src/**/*.{ts,tsx}",
       "!src/**/*.d.ts"
     ],
     "setupFiles": [
@@ -101,8 +101,8 @@
       "<rootDir>/src/setupTests.js"
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+      "<rootDir>/src/**/__tests__/**/*.{ts,tsx}",
+      "<rootDir>/src/**/*.{spec,test}.{ts,tsx}"
     ],
     "testEnvironment": "jest-environment-jsdom-fourteen",
     "transform": {

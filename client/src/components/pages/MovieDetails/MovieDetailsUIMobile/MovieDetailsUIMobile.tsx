@@ -21,13 +21,13 @@ interface MovieDetailsUIMobileProps {
 
 const MovieDetailsUIMobile: FunctionComponent<MovieDetailsUIMobileProps> = ({
   isLoading = false,
-  movie: { posterUrl, title, duration, description, rating, showings } = {},
+  movie: { posterUrl, title, duration, description, rating, showings },
   filters,
   onFilterChange,
 }) => (
   <StyledContainer>
     <MovieMobileHeader
-      image={posterUrl}
+      posterUrl={posterUrl}
       title={title}
       description={description}
       duration={duration}

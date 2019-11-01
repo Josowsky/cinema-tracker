@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
+import { MovieShortInfo } from 'shared/models';
+
 import {
   StyledContainer,
   StyledElementContainer,
@@ -14,17 +16,8 @@ import {
   StyledTitle,
 } from './MoviesListElement.styles';
 
-interface Movie {
-  genre: string;
-  id: number;
-  posterUrl: string;
-  rating: number;
-  title: string;
-  showingsTime: number[];
-}
-
 interface MoviesListElementProps {
-  movie: Movie;
+  movie: MovieShortInfo;
 }
 
 const MoviesListElement: FunctionComponent<MoviesListElementProps> = ({ movie }) => {

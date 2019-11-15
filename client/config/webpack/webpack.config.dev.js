@@ -28,10 +28,13 @@ module.exports = merge(baseConfig.config, {
         include: [baseConfig.reactPath],
         use: [
           {
-            loader: ['babel-loader', 'eslint-loader'],
+            loader: 'babel-loader',
             options: {
               cacheDirectory: true,
             },
+          },
+          {
+            loader: 'eslint-loader',
           },
         ],
       },

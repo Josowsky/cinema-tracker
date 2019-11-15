@@ -1,10 +1,9 @@
-// const webpack = require("webpack");
-const merge = require("webpack-merge");
+const merge = require('webpack-merge');
 
-const baseConfig = require("./webpack.config.base");
+const baseConfig = require('./webpack.config.base');
 
 module.exports = merge(baseConfig.config, {
-  mode: "production",
+  mode: 'production',
   devtool: false,
   entry: [baseConfig.indexFile],
   module: {
@@ -14,13 +13,13 @@ module.exports = merge(baseConfig.config, {
         include: [baseConfig.reactPath],
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              cacheDirectory: true
-            }
-          }
-        ]
-      }
-    ]
-  }
+              cacheDirectory: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
 });

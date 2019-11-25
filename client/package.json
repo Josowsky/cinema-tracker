@@ -53,6 +53,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack/webpack.config.dev.js",
+    "start-with-bundle-size": "webpack-dev-server --config config/webpack/webpack.config.dev.js --env.analyzeBundle",
     "build": "webpack --config config/webpack/webpack.config.prod.js",
     "lint": "tsc --noEmit && eslint 'src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
     "test": "jest",
@@ -82,10 +83,12 @@
     "@typescript-eslint/parser": "^2.6.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
+    "eslint-loader": "^3.0.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "prettier": "^1.18.2",
     "typescript": "^3.6.4",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
@@ -114,7 +117,10 @@
       "^.+\\.module\\.(css|sass|scss)$"
     ],
     "modulePaths": [],
-    "moduleDirectories": ["node_modules", "src"],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },

@@ -23,3 +23,11 @@ services:
       - "54320:5432"
     volumes:
       - $HOME/docker/volumes/postgres:/var/lib/postgresql/data
+  nginx:
+    build: ./nginx
+    tty: true
+    links:
+        - app
+        - postgres
+    ports:
+        - '8080:8080'

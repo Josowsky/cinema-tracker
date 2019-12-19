@@ -20,5 +20,7 @@ RUN yarn workspace client build
 # Expose port 5000 to mount it to port on the host
 EXPOSE 5000
 
+WORKDIR /app/server
+
 # Run express app
-CMD ["yarn", "workspace", "server", "start"]
+CMD ["node", "../node_modules/@babel/node/bin/babel-node.js", "app.js"]

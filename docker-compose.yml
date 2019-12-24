@@ -1,4 +1,4 @@
-version: "2.4"
+version: "3"
 services:
   app:
     container_name: express
@@ -13,15 +13,10 @@ services:
     links:
       - postgres
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
+    command: ["../wait-for-it.sh", "postgres:5432", "--", "./run.sh"]
   postgres:
     container_name: postgres
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U daria"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
     image: postgres
     environment:
       - POSTGRES_DB

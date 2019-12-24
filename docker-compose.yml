@@ -4,9 +4,9 @@ services:
     container_name: express
     restart: always
     environment:
-      DATABASE: daria
-      DATABASE_USER: daria
-      DATABASE_PASSWORD: daria
+      - DATABASE
+      - DATABASE_USER
+      - DATABASE_PASSWORD
     build: ./
     ports:
       - "80:5000"
@@ -24,9 +24,9 @@ services:
       retries: 5
     image: postgres
     environment:
-      POSTGRES_DB: daria
-      POSTGRES_USER: daria
-      POSTGRES_PASSWORD: daria
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
     ports:
       - "54320:5432"
     volumes:

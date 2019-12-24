@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node app.js",
+    "dev": "nodemon --exec babel-node app.js",
     "eslint": "eslint",
     "db:reset": "node ../node_modules/@babel/node/bin/babel-node.js seeds/index.js"
   },
@@ -22,12 +22,12 @@
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
     "sequelize": "^5.19.0",
-    "nodemon": "^1.19.2"
-  },
-  "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/node": "^7.6.1",
-    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-env": "^7.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2",
     "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.3.0",

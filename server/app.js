@@ -43,8 +43,6 @@ app.use((err, req, res) => {
   });
 });
 
-sequelize.sync().then(() => {
-  const server = app.listen(process.env.PORT || 5000, () => {
-    console.log(`Listening on port ${server.address().port}`);
-  });
-});
+sequelize.sync();
+
+app.listen(process.env.PORT || 5000);

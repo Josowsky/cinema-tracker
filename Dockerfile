@@ -1,5 +1,5 @@
-# Pull node 10 image
-FROM node:10
+# Pull lightweight node 11 image
+FROM node:11-alpine
 
 # Set the working dir to /usr/src/app (on the container)
 WORKDIR /usr/src/app
@@ -7,20 +7,29 @@ WORKDIR /usr/src/app
 COPY package.json package.json
 COPY yarn.lock yarn.lock
 
-# Install dependencies
+COPY server/package.json server/package.json
+COPY client/package.json client/package.json
+
+# Install dependencies on the container
 RUN yarn install --frozen-lockfile --production
 
-# Copy server workspaces the container
+# Copy application code to the container
 COPY server/ server/
 COPY client/ client/
+
+# Assign proper permisions for the run script on the container
+RUN chmod +x server/run.sh
 
 # Build react app
 RUN yarn workspace client build
 
-# Expose port 5000 to mount it to port on the host
+# Expose container port 5000 to mount it to port on the host
 EXPOSE 5000
 
-WORKDIR /app/server
+# Install bash (Alpine doesn't have it by default)
+RUN apk add --no-cache bash
+
+WORKDIR /usr/src/app/server
 
 # Run express app
-CMD ["node", "../node_modules/@babel/node/bin/babel-node.js", "app.js"]
+CMD ./run.sh

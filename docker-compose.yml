@@ -4,10 +4,6 @@ services:
     container_name: express
     restart: always
     image: regularlemon/cinema_tracker_app:latest
-    environment:
-      - DATABASE
-      - DATABASE_USER
-      - DATABASE_PASSWORD
     build: ./
     ports:
       - "80:5000"

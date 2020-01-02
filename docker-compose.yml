@@ -3,6 +3,7 @@ services:
   app:
     container_name: express
     restart: always
+    image: regularlemon/cinema_tracker_app:latest
     environment:
       - DATABASE
       - DATABASE_USER
@@ -33,4 +34,4 @@ services:
       - app
       - postgres
     ports:
-      - '8080:8080'
+      - "8080:8080"

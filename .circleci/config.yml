@@ -25,7 +25,10 @@ jobs:
             echo 'DATABASE_HOSTNAME="${DATABASE_HOSTNAME}"' | cat - wait-for-it.sh > temp && mv temp wait-for-it.sh
             echo 'DATABASE_PASSWORD="${DATABASE_PASSWORD}"' | cat - wait-for-it.sh > temp && mv temp wait-for-it.sh
             echo 'DATABASE_USER="${DATABASE_USER}"' | cat - wait-for-it.sh > temp && mv temp wait-for-it.sh
-            docker build --cache-from=app -t app .
+      - run:
+          name: "Build application Docker image"
+          command: |
+            docker build --build-arg DATABASE_ARG=${DATABASE} DATABASE_USER_ARG=${DATABASE_USER} DATABASE_PASSWORD_ARG=${DATABASE_PASSWORD} --cache-from=app -t app .
       - run:
           name: Save Docker image layer cache
           command: |

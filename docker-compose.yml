@@ -15,10 +15,6 @@ services:
   postgres:
     container_name: postgres
     image: postgres
-    environment:
-      - POSTGRES_DB
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
     ports:
       - "54320:5432"
     volumes:

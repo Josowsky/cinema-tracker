@@ -10,8 +10,6 @@ const app = express();
 
 app.use(require('morgan')('dev'));
 
-app.use(express.static(path.join(__dirname, '../client/build')));
-
 app.use(require('./routes'));
 
 if (!isProduction) {

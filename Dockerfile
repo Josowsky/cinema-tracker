@@ -8,7 +8,7 @@ ARG POSTGRES_USER
 ENV DATABASE_USER=$POSTGRES_USER
 ARG POSTGRES_PASSWORD
 ENV DATABASE_PASSWORD=$POSTGRES_PASSWORD
-ENV TEST_ENV_VAR=oldeen
+ENV NODE_ENV=production
 
 # Set the working dir to /usr/src/app (on the container)
 WORKDIR /usr/src/app

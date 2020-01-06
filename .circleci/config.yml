@@ -28,7 +28,7 @@ jobs:
       - run:
           name: "Build application Docker image"
           command: |
-            docker build --build-arg DATABASE_ARG=${DATABASE} DATABASE_USER_ARG=${DATABASE_USER} DATABASE_PASSWORD_ARG=${DATABASE_PASSWORD} --cache-from=app -t app .
+            docker build --build-arg DATABASE_ARG=${DATABASE} --build-arg DATABASE_USER_ARG=${DATABASE_USER} --build-arg DATABASE_PASSWORD_ARG=${DATABASE_PASSWORD} --cache-from=app -t app .
       - run:
           name: Save Docker image layer cache
           command: |

@@ -6,7 +6,7 @@ services:
     image: regularlemon/cinema_tracker_app:latest
     build: ./
     ports:
-      - "80:5000"
+      - "5000:5000"
     links:
       - postgres
     depends_on:
@@ -26,4 +26,4 @@ services:
       - app
       - postgres
     ports:
-      - "8080:8080"
+      - "80:8080"

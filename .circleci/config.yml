@@ -7,16 +7,16 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      # - restore_cache:
-      #     keys:
-      #       - v1-{{ .Branch }}
-      #     paths:
-      #       - /caches/app.tar
-      # - run:
-      #     name: Load Docker image layer cache
-      #     command: |
-      #       set +o pipefail
-      #       docker load -i /caches/app.tar | true
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /caches/app.tar | true
       - run:
           name: "Add environment variables to wait-for-it script and build Docker image"
           command: |
@@ -28,15 +28,15 @@ jobs:
       - run:
           name: "Build application Docker image"
           command: |
-            docker build --build-arg DATABASE_ARG=${DATABASE} --build-arg DATABASE_USER_ARG=${DATABASE_USER} --build-arg DATABASE_PASSWORD_ARG=${DATABASE_PASSWORD} --cache-from=app -t app .
-      # - run:
-      #     name: Save Docker image layer cache
-      #     command: |
-      #       mkdir -p /caches
-      #       docker save -o /caches/app.tar app
-      # - save_cache:
-      #     key: v1-{{ .Branch }}-{{ epoch }}
-      #     paths:
+            docker build --cache-from=app -t app .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/app.tar app
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
       #       - /caches/app.tar
       - deploy:
           name: Push application Docker image

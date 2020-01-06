@@ -1,15 +1,6 @@
 # Pull lightweight node 11 image
 FROM node:11-alpine
 
-ARG DATABASE_ARG=default_DATABASE
-ENV DATABASE=$DATABASE_ARG
-
-ARG DATABASE_USER_ARG=default_DATABASE_USER
-ENV DATABASE_USER=$DATABASE_USER_ARG
-
-ARG DATABASE_PASSWORD_ARG=default_DATABASE_PASSWORD
-ENV DATABASE_PASSWORD=$DATABASE_PASSWORD_ARG
-
 # Set the working dir to /usr/src/app (on the container)
 WORKDIR /usr/src/app
 

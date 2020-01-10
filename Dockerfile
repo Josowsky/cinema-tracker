@@ -39,6 +39,8 @@ RUN chmod +x server/run.sh
 # Build react app
 RUN yarn workspace client build
 
+RUN ls server
+
 # Expose container port 5000 to mount it to port on the host
 EXPOSE 5000
 
@@ -46,6 +48,8 @@ EXPOSE 5000
 RUN apk add --no-cache bash
 
 WORKDIR /usr/src/app/server
+
+RUN ls
 
 # Run express app
 CMD ./run.sh

@@ -4,7 +4,6 @@ services:
     container_name: express
     restart: always
     image: regularlemon/cinema_tracker_app:latest
-    build: ./
     ports:
       - "5000:5000"
     links:

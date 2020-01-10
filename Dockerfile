@@ -39,6 +39,9 @@ RUN chmod +x server/run.sh
 # Build react app
 RUN yarn workspace client build
 
+# Copy client app to server directory
+RUN cp -r client/build server/build
+
 # Expose container port 5000 to mount it to port on the host
 EXPOSE 5000
 

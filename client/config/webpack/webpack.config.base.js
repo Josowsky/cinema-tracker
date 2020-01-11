@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const reactPath = path.join(__dirname, '../../src');
-const buildPath = path.join(__dirname, '../../build');
+const buildPath = path.join(__dirname, '../../../server/build');
 const publicPath = path.join(__dirname, '../../public');
 const indexFile = path.join(reactPath, 'index.tsx');
 

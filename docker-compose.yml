@@ -3,23 +3,26 @@ services:
   app:
     container_name: express
     restart: always
-    build: ./
+    image: regularlemon/cinema_tracker_app:latest
     ports:
-      - "80:5000"
-    volumes:
-      - .:/app
+      - "5000:5000"
     links:
       - postgres
     depends_on:
       - postgres
+    command: ["../wait-for-it.sh", "postgres:5432", "--", "./run.sh"]
   postgres:
     container_name: postgres
     image: postgres
-    environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
     ports:
       - "54320:5432"
     volumes:
       - $HOME/docker/volumes/postgres:/var/lib/postgresql/data
+  nginx:
+    build: ./nginx
+    tty: true
+    links:
+      - app
+      - postgres
+    ports:
+      - "80:8080"

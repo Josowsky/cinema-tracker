@@ -50,7 +50,7 @@ jobs:
               ssh ${SSH_USERNAME}@145.239.86.60 '~/update-app.sh'
             fi
 
-  build_js_dependencies:
+  test_and_lint_frontend:
     docker:
       - image: circleci/node:10.15.2
     working_directory: ~/app
@@ -60,70 +60,22 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
+      - run: yarn workspace client test
+      - run: yarn workspace client tslint
+      - run: yarn workspace client lint
       - save_cache:
           key: cache-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache
-      - persist_to_workspace:
-          root: ~/app
-          paths:
-            - node_modules
-
-  run_js_tests:
-    docker:
-      - image: circleci/node:10.15.2
-    working_directory: ~/app
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn workspace client test
-
-  run_type_check:
-    docker:
-      - image: circleci/node:10.15.2
-    working_directory: ~/app
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn workspace client tslint
-
-  run_linters:
-    docker:
-      - image: circleci/node:10.15.2
-    working_directory: ~/app
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn workspace client lint
 
 workflows:
   build_test_deploy:
     jobs:
-      - build_js_dependencies
-      - run_js_tests:
-          requires:
-            - build_js_dependencies
-      - run_type_check:
-          requires:
-            - build_js_dependencies
-      - run_linters:
-          requires:
-            - build_js_dependencies
+      - test_and_lint_frontend
       - deploy_production:
           requires:
-            - run_js_tests
-            - run_type_check
-            - run_linters
+            - test_and_lint_frontend
           filters:
             branches:
               only: master

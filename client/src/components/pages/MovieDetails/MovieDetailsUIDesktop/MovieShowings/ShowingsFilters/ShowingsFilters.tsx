@@ -21,7 +21,10 @@ const ShowingsFilters: FunctionComponent<ShowingsFiltersProps> = ({ filters, onC
         <Switch<ShowingsFiltersType['dialoguesType']>
           name="dialoguesType"
           value={filters.dialoguesType}
-          options={[{ value: 'subtitles', label: 'Napisy' }, { value: 'dubbing', label: 'Dubbing' }]}
+          options={[
+            { value: 'subtitles', label: 'Napisy' },
+            { value: 'dubbing', label: 'Dubbing' },
+          ]}
           onChange={(filterName, fitlerValue) => onChange(filterName as 'screenType' | 'dialoguesType', fitlerValue)}
         />
       </StyledFilterContainer>
@@ -29,7 +32,10 @@ const ShowingsFilters: FunctionComponent<ShowingsFiltersProps> = ({ filters, onC
         <Switch<ShowingsFiltersType['screenType']>
           name="screenType"
           value={filters.screenType}
-          options={[{ value: '2D', label: '2D' }, { value: '3D', label: '3D' }]}
+          options={[
+            { value: '2D', label: '2D' },
+            { value: '3D', label: '3D' },
+          ]}
           onChange={(filterName, fitlerValue) => onChange(filterName as 'screenType' | 'dialoguesType', fitlerValue)}
         />
       </StyledFilterContainer>

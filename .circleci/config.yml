@@ -1,6 +1,7 @@
 version: 2.1
+
 jobs:
-  build:
+  deploy_production:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
@@ -48,3 +49,77 @@ jobs:
               echo '145.239.86.60 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
               ssh ${SSH_USERNAME}@145.239.86.60 '~/update-app.sh'
             fi
+
+  build_js_dependencies:
+    docker:
+      - image: circleci/node:10.15.2
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+  run_js_tests:
+    docker:
+      - image: circleci/node:10.15.2
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn workspace client test
+
+  run_type_check:
+    docker:
+      - image: circleci/node:10.15.2
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn workspace client tslint
+
+  run_linters:
+    docker:
+      - image: circleci/node:10.15.2
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn workspace client lint
+
+workflows:
+  build_test_deploy:
+    jobs:
+      - build_js_dependencies
+      - run_js_tests:
+          requires:
+            - build_js_dependencies
+      - run_type_check:
+          requires:
+            - build_js_dependencies
+      - run_linters:
+          requires:
+            - build_js_dependencies
+      - deploy_production:
+          requires:
+            - run_js_tests
+            - run_type_check
+            - run_linters
+          filters:
+            branches:
+              only: master

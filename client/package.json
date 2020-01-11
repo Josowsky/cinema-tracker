@@ -57,10 +57,10 @@
     "start": "webpack-dev-server --config config/webpack/webpack.config.dev.js",
     "start-with-bundle-size": "webpack-dev-server --config config/webpack/webpack.config.dev.js --env.analyzeBundle",
     "build": "webpack --config config/webpack/webpack.config.prod.js",
-    "lint": "tsc --noEmit && eslint 'src/**/*.{js,jsx,ts,tsx}' --quiet --fix",
+    "lint": "tsc --noEmit && eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "test": "jest",
     "tslint": "tsc --noEmit",
-    "eslint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --quiet --fix"
+    "eslint": "eslint 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "browserslist": {
     "production": [

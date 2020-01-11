@@ -1,6 +1,7 @@
 version: 2.1
+
 jobs:
-  build:
+  deploy_production:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
@@ -48,3 +49,33 @@ jobs:
               echo '145.239.86.60 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
               ssh ${SSH_USERNAME}@145.239.86.60 '~/update-app.sh'
             fi
+
+  test_and_lint_frontend:
+    docker:
+      - image: circleci/node:10.15.2
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install --frozen-lockfile
+      - run: yarn workspace client test
+      - run: yarn workspace client tslint
+      - run: yarn workspace client lint
+      - save_cache:
+          key: cache-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache
+
+workflows:
+  build_test_deploy:
+    jobs:
+      - test_and_lint_frontend
+      - deploy_production:
+          requires:
+            - test_and_lint_frontend
+          filters:
+            branches:
+              only: master

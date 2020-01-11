@@ -36,7 +36,9 @@ The SPA is created using  React with TypeScript and it's connected to the GraphQ
 #### 1. Create `.env` file and add credentials for your database
 ```sh
 cp server/.env_example server/.env
-nano server/.env
+vim server/.env
+cp .env_example .env
+vim .env
 ```
 
 #### 2. Install dependencies
@@ -55,7 +57,7 @@ yarn workspace server db:reset
 
 ```sh
 # Start server in one terminal tab
-yarn workspace server start
+yarn workspace server dev
 
 # Start client in second terminal tab
 yarn workspace client start

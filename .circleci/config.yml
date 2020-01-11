@@ -62,9 +62,13 @@ jobs:
             - v1-dependencies-
       - run: yarn install
       - save_cache:
+          key: cache-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache
+      - persist_to_workspace:
+          root: ~/app
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
 
   run_js_tests:
     docker:

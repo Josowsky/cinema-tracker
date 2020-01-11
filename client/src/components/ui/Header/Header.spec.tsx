@@ -5,5 +5,5 @@ import { Header } from './Header';
 
 it('renders welcome message', () => {
   const { getByText } = render(<Header />);
-  expect(getByText('???')).toBeInTheDocument();
+  expect(getByText('????')).toBeInTheDocument();
 });

@@ -46,9 +46,9 @@ const ShowingMobileGroup: FunctionComponent<ShowingMobileGroupProps> = ({ group:
               </StyledType>
             </StyledRow>
             <StyledRow>
-              <StyledCinema>{time}</StyledCinema>
+              <StyledCinema>{cinema}</StyledCinema>
               <StyledTime>
-                <FaRegClock /> {cinema}
+                <FaRegClock /> {time}
               </StyledTime>
             </StyledRow>
           </StyledShowing>

@@ -26,7 +26,7 @@ export const StyledShowing = styled.div`
   color: ${grey};
   width: 100%;
   background: #fff;
-  padding: ${grid}px ${grid * 2}px;
+  padding: ${grid}px;
   margin-bottom: ${grid}px;
 `;
 

@@ -9,7 +9,9 @@ import models from '../models';
  * "showingsTime" array is 4 elements max.
  */
 export const getAllMoviesShortInfo = async () => {
-  const movies = await models.Movie.findAll();
+  const movies = await models.Movie.findAll({
+    where: { isComplete: true, isActive: true },
+  });
 
   const queryPromises = movies.map(async movie => {
     const showings = await models.Showing.findAll({

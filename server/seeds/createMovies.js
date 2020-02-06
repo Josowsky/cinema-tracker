@@ -11,6 +11,8 @@ const createMovies = () =>
           'https://images-na.ssl-images-amazon.com/images/I/51o9U06EV8L.jpg',
         rating: 8.1,
         duration: 155,
+        isActive: true,
+        isComplete: true,
       },
       {
         title: 'Labirynt',
@@ -20,6 +22,8 @@ const createMovies = () =>
           'https://ssl-gfx.filmweb.pl/po/71/69/507169/7568460.6.jpg',
         rating: 7.9,
         duration: 153,
+        isActive: true,
+        isComplete: true,
       },
     ])
       .then(() => models.Movie.findAll())

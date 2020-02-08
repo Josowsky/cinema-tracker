@@ -23,7 +23,7 @@ export const getAllMoviesShortInfo = async () => {
     return {
       movie,
       showings: showings.map(showing =>
-        moment(showing.time).format('HH:MM'),
+        moment(showing.time).format('HH:mm'),
       ),
     };
   });

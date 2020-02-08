@@ -55,7 +55,7 @@ export const getMovieDetails = async ({ id }) => {
     showings: Object.keys(groupedSeances).map(date => ({
       date,
       seances: groupedSeances[date].map(seance => ({
-        time: moment(seance.time).format('HH:MM'),
+        time: moment(seance.time).format('HH:mm'),
         cinema: seance.Cinema.dataValues.name,
         subtitles: seance.data.subtitles,
         dimensionality: seance.data.dimensionality,

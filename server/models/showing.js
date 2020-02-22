@@ -4,7 +4,7 @@ const showing = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
     },
     url: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     data: {
       type: DataTypes.JSON,

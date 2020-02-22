@@ -21,6 +21,7 @@ jobs:
       - run:
           name: "Build application Docker image"
           command: |
+            env
             docker build --cache-from=app -t app .
       - run:
           name: Save Docker image layer cache
@@ -34,6 +35,7 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
+            env
             if [ "${CIRCLE_BRANCH}" == "config-for-new-infrastructure" ]; then
               docker login --username=${DOCKER_HUB_USERNAME} --password=${DOCKER_HUB_PASSWORD}
               docker tag app "${DOCKER_HUB_USERNAME}/cinema_tracker_app:latest"

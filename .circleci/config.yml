@@ -19,16 +19,9 @@ jobs:
             set +o pipefail
             docker load -i /caches/app.tar | true
       - run:
-          name: "Add environment variables to wait-for-it script and build Docker image"
-          command: |
-            echo DATABASE_USER=$DATABASE_USER | cat - wait-for-it.sh > temp && mv temp wait-for-it.sh
-            echo DATABASE_PASSWORD=$DATABASE_PASSWORD | cat - wait-for-it.sh > temp && mv temp wait-for-it.sh
-            echo DATABASE_HOSTNAME=$DATABASE_HOSTNAME | cat - wait-for-it.sh > temp && mv temp wait-for-it.sh
-            echo DATABASE=$DATABASE | cat - wait-for-it.sh > temp && mv temp wait-for-it.sh
-            echo '#!/bin/sh' | cat - wait-for-it.sh > temp && mv temp wait-for-it.sh
-      - run:
           name: "Build application Docker image"
           command: |
+            env
             docker build --cache-from=app -t app .
       - run:
           name: Save Docker image layer cache
@@ -42,12 +35,16 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
+            touch env-variables.env
+            echo "DATABASE=${DATABASE}" >> env-variables.env
+            echo "DATABASE_USER=${DATABASE_USER}" >> env-variables.env
+            echo "DATABASE_PASSWORD=${DATABASE_PASSWORD}" >> env-variables.env
+            echo "DATABASE_HOSTNAME=${DATABASE_HOSTNAME}" >> env-variables.env
+            echo "DATABASE_PORT=${DATABASE_PORT}" >> env-variables.env
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login --username=${DOCKER_HUB_USERNAME} --password=${DOCKER_HUB_PASSWORD}
-              docker tag app "${DOCKER_HUB_USERNAME}/cinema_tracker_app:latest"
-              docker push "${DOCKER_HUB_USERNAME}/cinema_tracker_app:latest"
-              echo '145.239.86.60 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
-              ssh ${SSH_USERNAME}@145.239.86.60 '~/update-app.sh'
+              echo "${SSH_HOST} ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=" >> ~/.ssh/known_hosts
+              scp env-variables.env ${SSH_USERNAME}@${SSH_HOST}:${SSH_PATH}
+              ssh ${SSH_USERNAME}@${SSH_HOST} '~/update-app.sh'
             fi
 
   test_and_lint_frontend:

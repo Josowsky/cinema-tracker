@@ -38,8 +38,8 @@ jobs:
               docker login --username=${DOCKER_HUB_USERNAME} --password=${DOCKER_HUB_PASSWORD}
               docker tag app "${DOCKER_HUB_USERNAME}/cinema_tracker_app:latest"
               docker push "${DOCKER_HUB_USERNAME}/cinema_tracker_app:latest"
-              echo '145.239.86.60 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
-              ssh ${SSH_USERNAME}@145.239.86.60 '~/update-app.sh'
+              echo '${SSH_HOST} ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
+              ssh ${SSH_USERNAME}@${SSH_HOST} '~/update-app.sh'
             fi
 
   test_and_lint_frontend:

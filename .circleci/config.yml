@@ -18,28 +18,25 @@ jobs:
           command: |
             set +o pipefail
             docker load -i /caches/app.tar | true
-      - run:
-          name: "Build application Docker image"
-          command: |
-            env
-            docker build --cache-from=app -t app .
-      - run:
-          name: Save Docker image layer cache
-          command: |
-            mkdir -p /caches
-            docker save -o /caches/app.tar app
-      - save_cache:
-          key: v1-{{ .Branch }}-{{ epoch }}
-          paths:
-            - /caches/app.tar
+      # - run:
+      #     name: "Build application Docker image"
+      #     command: |
+      #       env
+      #       docker build --cache-from=app -t app .
+      # - run:
+      #     name: Save Docker image layer cache
+      #     command: |
+      #       mkdir -p /caches
+      #       docker save -o /caches/app.tar app
+      # - save_cache:
+      #     key: v1-{{ .Branch }}-{{ epoch }}
+      #     paths:
+      #       - /caches/app.tar
       - deploy:
           name: Push application Docker image
           command: |
             env
             if [ "${CIRCLE_BRANCH}" == "config-for-new-infrastructure" ]; then
-              docker login --username=${DOCKER_HUB_USERNAME} --password=${DOCKER_HUB_PASSWORD}
-              docker tag app "${DOCKER_HUB_USERNAME}/cinema_tracker_app:latest"
-              docker push "${DOCKER_HUB_USERNAME}/cinema_tracker_app:latest"
               echo '145.239.86.60 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
               ssh ${SSH_USERNAME}@145.239.86.60 '~/update-app.sh'
             fi
@@ -49,19 +46,20 @@ jobs:
       - image: circleci/node:10.15.2
     working_directory: ~/app
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn install --frozen-lockfile
-      - run: yarn workspace client test
-      - run: yarn workspace client tslint
-      - run: yarn workspace client lint
-      - save_cache:
-          key: cache-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache
+      - run: echo 1
+      # - checkout
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "package.json" }}
+      #       - v1-dependencies-
+      # - run: yarn install --frozen-lockfile
+      # - run: yarn workspace client test
+      # - run: yarn workspace client tslint
+      # - run: yarn workspace client lint
+      # - save_cache:
+      #     key: cache-yarn-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache
 
 workflows:
   build_test_deploy:

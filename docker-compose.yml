@@ -9,10 +9,3 @@ services:
     env_file:
       - env-variables.env
     command: ["./run.sh"]
-  nginx:
-    build: ./nginx
-    tty: true
-    links:
-      - app
-    ports:
-      - "80:8080"

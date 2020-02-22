@@ -6,13 +6,8 @@ services:
     image: regularlemon/cinema_tracker_app:latest
     ports:
       - "5000:5000"
-    environment:
-      - DEBUG_OLDEN=1
-      - DATABASE
-      - DATABASE_USER
-      - DATABASE_PASSWORD
-      - DATABASE_HOSTNAME
-      - DATABASE_PORT
+    env_file:
+      - env-variables.env
     command: ["./run.sh"]
   nginx:
     build: ./nginx

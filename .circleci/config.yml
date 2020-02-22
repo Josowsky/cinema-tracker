@@ -35,11 +35,16 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            touch secret.txt
-            echo "Olden <3" >> secret.txt
+            touch env-variables.env
+            echo "DEBUG_OLDEN=1" >> env-variables.env
+            echo "DATABASE=${DATABASE}" >> env-variables.env
+            echo "DATABASE_USER=${DATABASE_USER}" >> env-variables.env
+            echo "DATABASE_PASSWORD=${DATABASE_PASSWORD}" >> env-variables.env
+            echo "DATABASE_HOSTNAME=${DATABASE_HOSTNAME}" >> env-variables.env
+            echo "DATABASE_PORT=${DATABASE_PORT}" >> env-variables.env
             if [ "${CIRCLE_BRANCH}" == "config-for-new-infrastructure" ]; then
               echo '145.239.86.60 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
-              scp secret.txt ${SSH_USERNAME}@145.239.86.60:/home/bartek/
+              scp env-variables.env ${SSH_USERNAME}@145.239.86.60:${SSH_PATH}
               ssh ${SSH_USERNAME}@145.239.86.60 '~/update-app.sh'
             fi
 

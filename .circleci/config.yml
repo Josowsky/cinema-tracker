@@ -8,30 +8,30 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      # - restore_cache:
-      #     keys:
-      #       - v1-{{ .Branch }}
-      #     paths:
-      #       - /caches/app.tar
-      # - run:
-      #     name: Load Docker image layer cache
-      #     command: |
-      #       set +o pipefail
-      #       docker load -i /caches/app.tar | true
-      # - run:
-      #     name: "Build application Docker image"
-      #     command: |
-      #       env
-      #       docker build --cache-from=app -t app .
-      # - run:
-      #     name: Save Docker image layer cache
-      #     command: |
-      #       mkdir -p /caches
-      #       docker save -o /caches/app.tar app
-      # - save_cache:
-      #     key: v1-{{ .Branch }}-{{ epoch }}
-      #     paths:
-      #       - /caches/app.tar
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /caches/app.tar | true
+      - run:
+          name: "Build application Docker image"
+          command: |
+            env
+            docker build --cache-from=app -t app .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/app.tar app
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/app.tar
       - deploy:
           name: Push application Docker image
           command: |
@@ -41,9 +41,8 @@ jobs:
             echo "DATABASE_PASSWORD=${DATABASE_PASSWORD}" >> env-variables.env
             echo "DATABASE_HOSTNAME=${DATABASE_HOSTNAME}" >> env-variables.env
             echo "DATABASE_PORT=${DATABASE_PORT}" >> env-variables.env
-            if [ "${CIRCLE_BRANCH}" == "config-for-new-infrastructure" ]; then
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
               echo "${SSH_HOST} ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=" >> ~/.ssh/known_hosts
-              echo "${SSH_HOST} ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I="
               scp env-variables.env ${SSH_USERNAME}@${SSH_HOST}:${SSH_PATH}
               ssh ${SSH_USERNAME}@${SSH_HOST} '~/update-app.sh'
             fi
@@ -53,20 +52,19 @@ jobs:
       - image: circleci/node:10.15.2
     working_directory: ~/app
     steps:
-      - run: echo 1
-      # - checkout
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "package.json" }}
-      #       - v1-dependencies-
-      # - run: yarn install --frozen-lockfile
-      # - run: yarn workspace client test
-      # - run: yarn workspace client tslint
-      # - run: yarn workspace client lint
-      # - save_cache:
-      #     key: cache-yarn-{{ checksum "yarn.lock" }}
-      #     paths:
-      #       - ~/.cache
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install --frozen-lockfile
+      - run: yarn workspace client test
+      - run: yarn workspace client tslint
+      - run: yarn workspace client lint
+      - save_cache:
+          key: cache-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache
 
 workflows:
   build_test_deploy:
@@ -77,4 +75,4 @@ workflows:
             - test_and_lint_frontend
           filters:
             branches:
-              only: config-for-new-infrastructure
+              only: master

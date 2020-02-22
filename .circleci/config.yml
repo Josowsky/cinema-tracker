@@ -42,7 +42,8 @@ jobs:
             echo "DATABASE_HOSTNAME=${DATABASE_HOSTNAME}" >> env-variables.env
             echo "DATABASE_PORT=${DATABASE_PORT}" >> env-variables.env
             if [ "${CIRCLE_BRANCH}" == "config-for-new-infrastructure" ]; then
-              echo '${SSH_HOST} ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
+              echo "${SSH_HOST} ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=" >> ~/.ssh/known_hosts
+              echo "${SSH_HOST} ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I="
               scp env-variables.env ${SSH_USERNAME}@${SSH_HOST}:${SSH_PATH}
               ssh ${SSH_USERNAME}@${SSH_HOST} '~/update-app.sh'
             fi

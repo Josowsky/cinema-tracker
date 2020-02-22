@@ -26,20 +26,11 @@ RUN yarn install --frozen-lockfile --production
 COPY server/ server/
 COPY client/ client/
 
-# Prepare script for waiting for the db
-COPY wait-for-it.sh wait-for-it.sh
-RUN chmod +x wait-for-it.sh
-
-# Install postgresql-client on the container (required by wait-for-it.sh)
-RUN apk --update add postgresql-client
-
 # Assign proper permisions for the run script on the container
 RUN chmod +x server/run.sh
 
 # Build react app
 RUN yarn workspace client build
-
-RUN ls server
 
 # Expose container port 5000 to mount it to port on the host
 EXPOSE 5000
@@ -48,8 +39,6 @@ EXPOSE 5000
 RUN apk add --no-cache bash
 
 WORKDIR /usr/src/app/server
-
-RUN ls
 
 # Run express app
 CMD ./run.sh

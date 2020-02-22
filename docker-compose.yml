@@ -9,3 +9,8 @@ services:
     env_file:
       - env-variables.env
     command: ["./run.sh"]
+    networks:
+      - darbar_load_balancer
+networks:
+  darbar_load_balancer:
+    external: true

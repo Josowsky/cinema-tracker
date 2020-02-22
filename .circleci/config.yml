@@ -8,16 +8,16 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - restore_cache:
-          keys:
-            - v1-{{ .Branch }}
-          paths:
-            - /caches/app.tar
-      - run:
-          name: Load Docker image layer cache
-          command: |
-            set +o pipefail
-            docker load -i /caches/app.tar | true
+      # - restore_cache:
+      #     keys:
+      #       - v1-{{ .Branch }}
+      #     paths:
+      #       - /caches/app.tar
+      # - run:
+      #     name: Load Docker image layer cache
+      #     command: |
+      #       set +o pipefail
+      #       docker load -i /caches/app.tar | true
       # - run:
       #     name: "Build application Docker image"
       #     command: |
@@ -35,9 +35,11 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            env
+            touch secret.txt
+            echo "Olden <3" >> secret.txt
             if [ "${CIRCLE_BRANCH}" == "config-for-new-infrastructure" ]; then
               echo '145.239.86.60 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMhC3TfusdIUXynfhRmZFrutCFxiMWw36+7lg5cAU9UzdsjpMentSJVtO86bULiX5G75lMiF+L7GziOUquIOW6I=' >> ~/.ssh/known_hosts
+              scp secret.txt ${SSH_USERNAME}@145.239.86.60:/home/bartek/
               ssh ${SSH_USERNAME}@145.239.86.60 '~/update-app.sh'
             fi
 
